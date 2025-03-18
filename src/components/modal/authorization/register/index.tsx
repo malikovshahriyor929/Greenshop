@@ -3,11 +3,12 @@ import { FieldType } from "../../../../@types";
 
 import google from "../../../../shared/assets/svg/google.svg";
 import face from "../../../../shared/assets/svg/faceBook.svg";
-import { useRegiterMutation } from "../../../../hooks/useQueryHandler/useQueryAction";
+import { RegisterWithGoogle, useRegiterMutation } from "../../../../hooks/useQueryHandler/useQueryAction";
 import { LoadingOutlined } from "@ant-design/icons";
 
 const Register = () => {
   let { mutate, isPending } = useRegiterMutation();
+  let {mutate:registers} = RegisterWithGoogle() 
   let register = (e: FieldType) => {
     mutate(e);
   };
@@ -57,7 +58,7 @@ const Register = () => {
           <Divider>Or register with</Divider>
         </div>
         <div className="flex flex-col gap-4">
-          <button className="text-sm text-[#727272] font-medium border border-[#eaeaea] rounded-lg py-3 flex items-center gap-4 w-full justify-center ">
+          <button onClick={()=>registers()} className="text-sm text-[#727272] font-medium border border-[#eaeaea] rounded-lg py-3 flex items-center gap-4 w-full justify-center ">
             <img src={google} alt="" />
             Continue with Google
           </button>

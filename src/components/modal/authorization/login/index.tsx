@@ -3,12 +3,13 @@ import { FieldType } from "../../../../@types";
 
 import google from "../../../../shared/assets/svg/google.svg";
 import face from "../../../../shared/assets/svg/faceBook.svg";
-import { useLoginMutation } from "../../../../hooks/useQueryHandler/useQueryAction";
+import { LoginWithGoogle, useLoginMutation } from "../../../../hooks/useQueryHandler/useQueryAction";
 
 import { LoadingOutlined } from "@ant-design/icons";
 
 const LogIn = () => {
   let { mutate, isPending } = useLoginMutation();
+  let {mutate:loginWithGoogle} = LoginWithGoogle()
   let login = (e: FieldType) => {
     mutate(e);
   };
@@ -46,7 +47,7 @@ const LogIn = () => {
           <Divider>Or login with</Divider>
         </div>
         <div className="flex flex-col gap-4">
-          <button className="text-sm text-[#727272] font-medium border border-[#eaeaea] rounded-lg py-3 flex items-center gap-4 w-full justify-center ">
+          <button onClick={()=> loginWithGoogle()} className="text-sm text-[#727272] font-medium border border-[#eaeaea] rounded-lg py-3 flex items-center gap-4 w-full justify-center ">
             <img src={google} alt="" />
             Login with Google
           </button>

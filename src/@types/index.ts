@@ -18,4 +18,5 @@ export interface CategorySideType {
   created_by?: string;
   created_at?: string;
   __v?: number;
+  param?: string;
 }
