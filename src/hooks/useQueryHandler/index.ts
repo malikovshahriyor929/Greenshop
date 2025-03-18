@@ -4,7 +4,7 @@ import { useAxios } from "../useAxios";
 interface userQueryType {
   pathname: string;
   url: string;
-  params: object;
+  params?: object;
 }
 
 const useQueryHandler = ({ params, pathname, url }: userQueryType) => {

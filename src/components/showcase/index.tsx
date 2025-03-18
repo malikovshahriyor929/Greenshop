@@ -5,12 +5,11 @@ import showSmall from "../../shared/assets/svg/showcaseSmall.svg";
 import { Carousel } from "antd";
 
 const Showcase = () => {
-  // ededed
   return (
     <div className="showbg w-[93%] p-5 max-[310px]:py-0 rounded-lg mt-5 mx-auto bg-[linear-gradient(135deg,rgba(245,245,245,0.5)_0%,rgba(245,245,245,0.5)_100%)] max-w-[1440px]">
       <Carousel autoplay touchMove={true}>
-        {Array.from({ length: 3 }).map((_) => (
-          <div className="!flex !items-center !justify-between  ">
+        {Array.from({ length: 3 }).map((_,idx) => (
+          <div key={idx} className="!flex !items-center !justify-between  ">
             <div className="!max-[500px]:flex flex-col gap-2 ">
               <p className="text-[14px] max-[390px]:text-[12px]  text-[#3d3d3d] font-medium">
                 Welcome to GreenShop
