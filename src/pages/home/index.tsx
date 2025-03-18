@@ -1,6 +1,11 @@
+import Showcase from "../../components/showcase";
 
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <Showcase />
+    </div>
+  );
 };
 
 export default Home;

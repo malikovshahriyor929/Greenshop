@@ -8,3 +8,10 @@
   box-shadow: 0 10px 20px 0 rgba(70, 163, 88, 0.3);
   background: linear-gradient(137deg, rgba(70, 163, 88, 0.45) 0%, #46a358 100%);
 }
+.showbg {
+  background-color: linear-gradient(
+    135deg,
+    rgba(245, 245, 245, 0.5) 0%,
+    rgba(245, 245, 245, 0.5) 100%
+  );
+}
