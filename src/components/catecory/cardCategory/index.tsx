@@ -1,9 +1,8 @@
 import { Select } from "antd";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import useQueryHandler from "../../../hooks/useQueryHandler";
 import { CardType } from "../../../@types";
 import Card from "./card";
-import { useEffect, useState } from "react";
 
 const CardCategory = () => {
   let { pathname } = useLocation();
