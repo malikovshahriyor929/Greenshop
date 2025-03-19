@@ -4,10 +4,11 @@ import useQueryHandler from "../../../hooks/useQueryHandler";
 import SideCategoryItem from "./categorySideItem";
 import { useSearchParams } from "react-router-dom";
 import { CategorySkeleton } from "../../../shared/generics/loader";
+import Price from "./price";
+import Discount from "./discount";
 
 const CategorySide = () => {
   let [param, setParam] = useState("house-plants");
-
   let [_, setUrlParams] = useSearchParams({ category: "house-plants" });
 
   let { data, isLoading } = useQueryHandler({
@@ -39,6 +40,12 @@ const CategorySide = () => {
           )}
         </div>
         <p className="text-[18px] text-[#3d3d3d] font-bold  ">Price Range</p>
+        <div>
+          <Price />
+        </div>
+        <div>
+          <Discount />
+        </div>
       </div>
     </>
   );

@@ -9,7 +9,7 @@ import { FaUser } from "react-icons/fa";
 
 const HeaderItem = () => {
   return (
-    <div className="hidden max-[600px]:block bg-white rounded-t-2xl shadow-[1px_2px_30px_0px_rgba(0,0,0,0.12)]  w-full fixed bottom-0 left-0 ">
+    <div className="hidden z-[999] max-[600px]:block bg-white rounded-t-2xl shadow-[1px_2px_30px_0px_rgba(0,0,0,0.12)]  w-full fixed bottom-0 left-0 ">
       {/* <div className="fixed bottom-0 left-0 w-full   ">
      <img className="h-[135px] w-full" src={headerItem} alt="" /> 
       </div> */}

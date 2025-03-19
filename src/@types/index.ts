@@ -20,3 +20,21 @@ export interface CategorySideType {
   __v?: number;
   param?: string;
 }
+export interface CardType {
+  _id?: string;
+  title?: string;
+  price?: number;
+  discount?: false;
+  discount_price?: string;
+  short_description?: string;
+  description?: string;
+  main_image?: string;
+  detailed_images?: [string, string, string, string];
+  rate?: number;
+  views?: number;
+  tags?: [];
+  comments?: [];
+  created_by?: string;
+  created_at?: string;
+  __v?: number;
+}

@@ -5,7 +5,7 @@ const SideCategoryItem = (props: CategorySideType) => {
     <div
       className={`flex items-center ${
         props.param == props.route_path && "text-[#46a358] font-bold"
-      }  justify-between text-[#3d3d3d]`}
+      }  justify-between text-[#3d3d3d] cursor-pointer`}
     >
       <p className="">{props.title}</p>
       <p>({Math.abs(props.count!)})</p>

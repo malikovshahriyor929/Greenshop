@@ -49,3 +49,28 @@
 .ant-select-selector {
   border-color: #46a358 !important;
 }
+:where(.css-dev-only-do-not-override-tjsggz).ant-select-outlined:not(
+    .ant-select-customize-input
+  )
+  .ant-select-selector {
+  border: none;
+  outline: none;
+}
+.cartHover:hover .cartHoverChild {
+  bottom: 8px;
+  transition: 0.3s ease-out;
+}
+.cartHoverChild div:hover {
+  color: #46a358;
+  transition: 0.3s;
+}
+.cartHoverChild div:active {
+  color: #46a358;
+  transform: scale(0.9);
+  transition: 0.3s;
+}
+.sizes:hover {
+  border: 1px solid #46a358;
+  color: #46a358;
+  transition: 0.3s;
+}
