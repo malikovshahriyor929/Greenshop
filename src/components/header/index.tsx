@@ -30,7 +30,7 @@ const Header = () => {
             <Link to={"/"}>
               <p
                 className={`text-[#3d3d3d] ${
-                  pathname == "/" ? " font-bold border-b-4" : "font-normal "
+                  pathname == "/" || pathname == "/" ? " font-bold border-b-4" : "font-normal "
                 } w-fit border-[#46a358] pb-6 max-[640px]:pb-4`}
               >
                 Home
