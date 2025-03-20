@@ -1,6 +1,7 @@
 import AboutFlower from "../../components/aboutFlower";
 import CardCategory from "../../components/catecory/cardCategory";
 import CategorySide from "../../components/catecory/category";
+import Posts from "../../components/posts";
 import Showcase from "../../components/showcase";
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
         </div>
       </div>
       <AboutFlower />
+      <Posts />
     </div>
   );
 };
