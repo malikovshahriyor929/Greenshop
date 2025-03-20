@@ -14,7 +14,7 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/:id",
+        path: "/shop/:category/:id",
         element: <CardView />,
       },
       {

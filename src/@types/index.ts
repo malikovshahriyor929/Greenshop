@@ -37,6 +37,7 @@ export interface CardType {
   created_by?: string;
   created_at?: string;
   __v?: number;
+  category?:string
 }
 export interface TitleCategoryType {
   id: number;

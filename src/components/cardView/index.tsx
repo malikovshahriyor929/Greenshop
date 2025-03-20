@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useQueryHandler from "../../hooks/useQueryHandler";
 import { Image, Rate } from "antd";
 import Button from "../../shared/generics/btn";
@@ -21,10 +21,12 @@ const CardViewComponents = () => {
   return (
     <>
       <div className="w-[90%] mx-auto max-w-[1440px] max-[600px]:mb-20">
-        <p className="text-[#3d3d3d] mt-5 ">Home / Shop</p>
+        <p className="text-[#3d3d3d] mt-5 cursor-pointer ">
+          <Link to={"/"} className="font-semibold  ">Home</Link> / Shop
+        </p>
         <div className="grid grid-cols-2 max-[827px]:grid-cols-1 max-[1100px]:grid-cols-[2fr_1.7fr] max-[1020px]:grid-cols-[2fr_1.5fr] max-[1000px]:grid-cols-[2fr_1.3fr] my-5 max-[1233px]:gap-5 items-start ">
           <div className="flex max-[910px]:flex-col-reverse  max-[910px]:gap-5 gap-10 max-[1233px]:gap-4 ">
-            <div className="grid grid-cols-1  max-[910px]:grid-cols-4 items-center gap-4 max-[995px]:gap-0 max-[995px]:  ">
+            <div className={`grid grid-cols-1  max-[910px]:grid-cols-4 items-center gap-4 max-[995px]:gap-0 max-[995px]:  ${data?.detailed_images?.length && "hidden"} `}>
               {data?.detailed_images.map((value: string, idx: number) => (
                 <Image
                   className="!w-[100px] !h-[100px] max-[475px]:mx-auto max-[475px]:!h-[70px] max-[475px]:!w-[70px] max-[370px]:!h-[60px] max-[370px]:!w-[60px]  !object-cover bg-[#fbfbfb] rounded-lg "

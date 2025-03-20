@@ -25,7 +25,7 @@ const Card = (props: CardType) => {
             <BiHeart size={25} />
           </div>
           <div
-            onClick={() => navigate(`/${props._id}`)}
+            onClick={() => navigate(`/shop/${props.category}/${props._id}`)}
             className="bg-white p-1 rounded-lg"
           >
             <LuSearch size={25} />

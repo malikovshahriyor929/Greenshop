@@ -29,9 +29,9 @@ const Descr = ({ data }: { data: CardType }) => {
             with a wooden stand to help elevate your plants off the ground.
           </p>
         ) : (
-          <p dangerouslySetInnerHTML={{ __html: data?.description as string }}>
-            {data?.description?.length}
-          </p>
+          <div
+            dangerouslySetInnerHTML={{ __html: data?.description as string }}
+          />
         )}
       </div>
     </div>
