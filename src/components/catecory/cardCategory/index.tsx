@@ -29,7 +29,7 @@ const CardCategory = () => {
   };
 
   return (
-    <div>
+    <>
       <div className=" flex items-center justify-between ">
         <div className="flex items-center gap-4 max-[700px]:gap-2">
           {title_category?.map((value) => (
@@ -82,7 +82,7 @@ const CardCategory = () => {
               </div>
             ))}
       </div>
-    </div>
+    </>
   );
 };
 

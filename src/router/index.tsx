@@ -3,6 +3,7 @@ import Home from "../pages/home";
 import Blogs from "../pages/blog";
 import MainLayout from "../shared/layout";
 import CardView from "../pages/cardView";
+import Shop from "../pages/shop";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs />,
+      },
+      {
+        path: "/shopping_cart/:id",
+        element: <Shop />,
       },
     ],
   },

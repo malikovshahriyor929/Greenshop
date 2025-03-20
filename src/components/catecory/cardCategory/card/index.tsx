@@ -18,8 +18,8 @@ const Card = (props: CardType) => {
           />
         </div>
         <div className="absolute z-10 left-1/3 max-[360px]:gap-2 -bottom-20  flex items-center gap-5 cartHoverChild">
-          <div className="bg-white p-1 rounded-lg">
-            <TbShoppingCart size={25} />
+          <div   onClick={() => navigate(`/shopping_cart/${props._id}`)} className="bg-white p-1 rounded-lg">
+            <TbShoppingCart  size={25} />
           </div>
           <div className="bg-white p-1 rounded-lg">
             <BiHeart size={25} />
