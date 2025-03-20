@@ -32,7 +32,7 @@ const CardViewComponents = () => {
               />
             ))}
           </div>
-          <div className=" **:!rounded-lg mx-auto  bg-red-500 max-[9]: p-2 *:!rounded-lg !max-w-[400px] object-contain  !max-h-[400px]">
+          <div className=" **:!rounded-lg mx-auto   max-[9]: p-2 *:!rounded-lg !max-w-[400px] object-contain  !max-h-[400px]">
             <Image
               className="!w-full !h-full bg-[#fbfbfb] max-[910px]:!max-w-[400px] max-[910px]:!max-h-[400px]  !p-2  !rounded-lg !object-cover "
               src={data?.main_image}
