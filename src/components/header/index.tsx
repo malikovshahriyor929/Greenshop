@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import HeaderItem from "./headerItem";
 
 import logo from "../../shared/assets/svg/Logo (2).svg";
@@ -8,17 +8,20 @@ import logIn from "../../shared/assets/svg/login.svg";
 import filter from "../../shared/assets/svg/filter.svg";
 
 import { BiSearch } from "react-icons/bi";
-import { useReduxDispatch } from "../../hooks/useRedux";
+import { useReduxDispatch, useReduxSelector } from "../../hooks/useRedux";
 import { setModalVisibilty } from "../../redux/modalSlice";
-import { Drawer } from "antd";
+import { Badge, Drawer } from "antd";
 import { useState } from "react";
 import CategorySide from "../catecory/category";
 
 const Header = () => {
+  let navigate = useNavigate();
+
   let [filterBtn, setFilterBtn] = useState(false);
   let { pathname } = useLocation();
   let user = JSON.parse(localStorage.getItem("user") as string);
   let dispatch = useReduxDispatch();
+  let {product} = useReduxSelector(state=>state.ShopSlice)
   return (
     <div>
       <div className="w-[90%] mx-auto max-w-[1440px]  max-[600px]: pt-5 max-[600px]:border-none border-b border-[rgba(70,163,88,0.5)]">
@@ -30,7 +33,9 @@ const Header = () => {
             <Link to={"/"}>
               <p
                 className={`text-[#3d3d3d] ${
-                  pathname == "/" || pathname == "/" ? " font-bold border-b-4" : "font-normal "
+                  pathname == "/" || pathname == "/"
+                    ? " font-bold border-b-4"
+                    : "font-normal "
                 } w-fit border-[#46a358] pb-6 max-[640px]:pb-4`}
               >
                 Home
@@ -50,7 +55,11 @@ const Header = () => {
           </div>
           <div className=" flex items-center gap-6 pb-4 max-[640px]:pb-3">
             <img src={search} alt="" />
-            <img src={cart} alt="" />
+            <button onClick={() => navigate(`/shopping_cart`)}>
+              <Badge count={product.length}>
+                <img src={cart} alt="" />
+              </Badge>
+            </button>
             <button
               onClick={() => dispatch(setModalVisibilty())}
               className="bg-[#46a358] rounded-lg px-2 py-1 flex  gap-1 text-white "

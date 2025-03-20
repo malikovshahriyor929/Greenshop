@@ -74,6 +74,9 @@
   color: #46a358;
   transition: 0.3s;
 }
+:where(.css-dev-only-do-not-override-tjsggz).ant-form-item{
+  margin-bottom: 0px !important;
+}
 @media(max-width:380px){
   .cartHover:hover .cartHoverChild {
     bottom: 8px;

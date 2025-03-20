@@ -4,8 +4,11 @@ import { BiHeart } from "react-icons/bi";
 import { LuSearch } from "react-icons/lu";
 import { TbShoppingCart } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
+import { useReduxDispatch } from "../../../../hooks/useRedux";
+import { addToCart } from "../../../../redux/shopSlice";
 
 const Card = (props: CardType) => {
+  let dispatch = useReduxDispatch();
   let navigate = useNavigate();
   return (
     <div className=" flex flex-col gap-3">
@@ -18,8 +21,11 @@ const Card = (props: CardType) => {
           />
         </div>
         <div className="absolute z-10 left-1/3 max-[360px]:gap-2 -bottom-20  flex items-center gap-5 cartHoverChild">
-          <div   onClick={() => navigate(`/shopping_cart/${props._id}`)} className="bg-white p-1 rounded-lg">
-            <TbShoppingCart  size={25} />
+          <div
+            onClick={() => dispatch(addToCart(props))}
+            className="bg-white p-1 rounded-lg"
+          >
+            <TbShoppingCart size={25} />
           </div>
           <div className="bg-white p-1 rounded-lg">
             <BiHeart size={25} />

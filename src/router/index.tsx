@@ -4,6 +4,7 @@ import Blogs from "../pages/blog";
 import MainLayout from "../shared/layout";
 import CardView from "../pages/cardView";
 import Shop from "../pages/shop";
+import Proccess from "../pages/proccess";
 
 export const router = createBrowserRouter([
   {
@@ -23,9 +24,14 @@ export const router = createBrowserRouter([
         element: <Blogs />,
       },
       {
-        path: "/shopping_cart/:id",
+        path: "/shopping_cart",
         element: <Shop />,
+      },
+      {
+        path: "/shop/checkout",
+        element: <Proccess />,
       },
     ],
   },
 ]);
+// https://roadmap.sh/frontend
