@@ -9,15 +9,19 @@ import Discount from "./discount";
 
 const CategorySide = () => {
   let [param, setParam] = useState("house-plants");
-  let [_, setUrlParams] = useSearchParams({ category: "house-plants" });
-
+  let [params, setUrlParams] = useSearchParams({ category: "house-plants" });
+  let range_min = params.get("range_min") || "0";
+  let range_max = params.get("range_max") || "1000";
+  // const category = params.get("category") || "house-plants";
+  const sort = params.get("sort") || "defualt-sorting";
+  const type = params.get("type") || "all-plants";
   let { data, isLoading } = useQueryHandler({
-    pathname: "catecory",
+    pathname: `catecory`,
     url: "flower/category",
   });
   return (
     <>
-      <div className="bg-[#fbfbfb] rounded-lg p-3 flex flex-col gap-2 ">
+      <div className="bg-[#fbfbfb] sticky h-screen overflow-y-scroll  max-[1130px]: scroll-auto top-0 rounded-lg p-3 flex flex-col gap-2 ">
         <p className="text-[18px] text-[#3d3d3d] font-bold  ">Categories</p>
         <div className="">
           {isLoading ? (
@@ -28,7 +32,13 @@ const CategorySide = () => {
             data?.map((value: CategorySideType) => (
               <div
                 onClick={() => {
-                  setUrlParams({ category: value.route_path! }),
+                  setUrlParams({
+                    category: value.route_path!,
+                    range_min,
+                    range_max,
+                    type,
+                    sort,
+                  }),
                     setParam(value.route_path!);
                 }}
                 key={value?._id}

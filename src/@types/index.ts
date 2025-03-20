@@ -38,3 +38,8 @@ export interface CardType {
   created_at?: string;
   __v?: number;
 }
+export interface TitleCategoryType {
+  id: number;
+  title: string;
+  label: string;
+}

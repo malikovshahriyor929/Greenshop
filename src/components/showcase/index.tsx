@@ -31,7 +31,7 @@ const Showcase = () => {
             </div>
             <div>
               <img
-                className="max-[475px]:!flex !hidden max-[340px]:!-mr-14 max-[320px]:!min-w-[120px] "
+                className="max-[475px]:!flex    !hidden max-[340px]:!-mr-14 max-[320px]:!min-w-[120px] "
                 src={showSmall}
                 alt=""
               />

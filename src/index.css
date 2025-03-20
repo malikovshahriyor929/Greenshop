@@ -74,3 +74,10 @@
   color: #46a358;
   transition: 0.3s;
 }
+@media(max-width:380px){
+  .cartHover:hover .cartHoverChild {
+    bottom: 8px;
+    left: 10px;
+    transition: 0.3s ease-out;
+  }
+}

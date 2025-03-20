@@ -11,7 +11,12 @@ let CategorySkeleton = ({ length }: { length: number }) => {
     </div>
   );
 };
-let CategorySideDiscount = () => {
-  return "";
+let cardSkeleton = () => {
+  return (
+    <div className="w-full flex flex-col gap-4">
+      <Skeleton.Image className="min-w-[250px] min-h-[250px] w-full mx-auto " />
+      <Skeleton className="mx-auto max-w-[250px]" />
+    </div>
+  );
 };
-export { CategorySkeleton, CategorySideDiscount };
+export { CategorySkeleton, cardSkeleton };

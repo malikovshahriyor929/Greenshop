@@ -10,11 +10,15 @@ import filter from "../../shared/assets/svg/filter.svg";
 import { BiSearch } from "react-icons/bi";
 import { useReduxDispatch } from "../../hooks/useRedux";
 import { setModalVisibilty } from "../../redux/modalSlice";
+import { Drawer } from "antd";
+import { useState } from "react";
+import CategorySide from "../catecory/category";
 
 const Header = () => {
+  let [filterBtn, setFilterBtn] = useState(false);
   let { pathname } = useLocation();
   let user = JSON.parse(localStorage.getItem("user") as string);
-  let dispatch = useReduxDispatch()
+  let dispatch = useReduxDispatch();
   return (
     <div>
       <div className="w-[90%] mx-auto max-w-[1440px]  max-[600px]: pt-5 max-[600px]:border-none border-b border-[rgba(70,163,88,0.5)]">
@@ -47,7 +51,10 @@ const Header = () => {
           <div className=" flex items-center gap-6 pb-4 max-[640px]:pb-3">
             <img src={search} alt="" />
             <img src={cart} alt="" />
-            <button onClick={()=>dispatch(setModalVisibilty())} className="bg-[#46a358] rounded-lg px-2 py-1 flex  gap-1 text-white ">
+            <button
+              onClick={() => dispatch(setModalVisibilty())}
+              className="bg-[#46a358] rounded-lg px-2 py-1 flex  gap-1 text-white "
+            >
               {user ? (
                 user.name
               ) : (
@@ -70,9 +77,19 @@ const Header = () => {
               placeholder="Find your plants"
             />
           </form>
-          <div className="bg_of_filter rounded-lg p-3 w-fit">
+          <div
+            onClick={() => setFilterBtn(!filterBtn)}
+            className="bg_of_filter rounded-lg p-3 w-fit"
+          >
             <img src={filter} className="" alt="" />
           </div>
+          <Drawer
+            title="Filter"
+            onClose={() => setFilterBtn(!filterBtn)}
+            open={filterBtn}
+          >
+            <CategorySide />
+          </Drawer>
         </div>
       </div>
 
