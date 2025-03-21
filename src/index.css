@@ -74,10 +74,15 @@
   color: #46a358;
   transition: 0.3s;
 }
-:where(.css-dev-only-do-not-override-tjsggz).ant-form-item{
+:where(.css-dev-only-do-not-override-tjsggz).ant-form-item {
   margin-bottom: 0px !important;
 }
-@media(max-width:380px){
+@media (max-width: 577px) {
+  .ant-form-item-explain-error {
+    font-size: 12px !important;
+  }
+}
+@media (max-width: 380px) {
   .cartHover:hover .cartHoverChild {
     bottom: 8px;
     left: 10px;

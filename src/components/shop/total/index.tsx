@@ -12,7 +12,6 @@ const Total = ({ params }: { params: CardType[] }) => {
     (acc, value) => acc + value.price! * value.count!,
     0
   );
-  console.log(total);
   //   let { data, isLoading } = useQueryHandler({
   //     pathname: `total-${cupon}`,
   //     url: "features/coupon",
@@ -87,7 +86,7 @@ const Total = ({ params }: { params: CardType[] }) => {
           </Button>
         </div>
         <button
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/shop/checkout")}
           className=" flex items-center flex-col cursor-pointer rounded-lg px-4 py-2 w-full gap-1 text-[#46a358]"
         >
           Continue Shopping
