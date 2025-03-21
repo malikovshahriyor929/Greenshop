@@ -19,9 +19,10 @@ const LogIn = () => {
         <p className="text-[13px] text-[#3d3d3d]  ">
           Enter your username and password to login.
         </p>
-        <Form onFinish={login}>
+        <Form onFinish={login} >
           <Form.Item<FieldType>
             name="email"
+            className="*:pb-5"
             rules={[{ required: true, message: "Please input your email!" }]}
           >
             <Input placeholder="almamun_uxui@outlook.com" />

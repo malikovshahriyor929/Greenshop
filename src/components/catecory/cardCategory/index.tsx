@@ -10,7 +10,7 @@ const CardCategory = () => {
   let [params, setParams] = useSearchParams({});
   let range_min = params.get("range_min") || "0";
   let range_max = params.get("range_max") || "1000";
-  const category = params.get("category") || "house-plants";
+  const category = params.get("category") || "accessories";
   const sort = params.get("sort") || "defualt-sorting";
   const type = params.get("type") || "all-plants";
   let { data, isLoading, isError } = useQueryHandler({
