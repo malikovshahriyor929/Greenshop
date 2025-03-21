@@ -4,43 +4,24 @@ import AddressInfo from "./adressInfo/inedx";
 import Path from "./pathForAddress";
 import Total from "./totalForAddress";
 import { Form, message } from "antd";
-import Button from "../../shared/generics/btn";
 
 const ProccessComponents = () => {
-  // let { data } = useQueryHandler({
-  //   pathname: "order",
-  //   url: "user/address",
-  // });
-  // console.log(data);
   const [form] = Form.useForm();
   const [selectedPayment, setSelectedPayment] = useState(null);
-  // let [addressInfo, setAddressInfo] = useState({
-  //   firstName: "",
-  //   lastName: "",
-  //   country: "",
-  //   city: "",
-  //   street: "",
-  //   state: "",
-  //   zip: "",
-  //   phone: "",
-  //   email: "",
-  // });
-  // console.log(form);
+  const [totalPrice, setTotalPrice] = useState(0) || 0
   const onFinish = (values: any) => {
     if (!selectedPayment) {
       message.error("Please select a payment method!");
       return;
     }
-
-    // Collecting form data & selected payment method
     const orderDetails = {
       ...values,
       paymentMethod: selectedPayment,
-      totalAmount: 473.88, // Assuming fixed total
-    };
+      totalAmount: totalPrice, 
+        };
 
     console.log("Order Details:", orderDetails);
-    // message.success("Order placed successfully!");
+    message.success("Order placed successfully!");
   };
 
   return (
@@ -60,10 +41,10 @@ const ProccessComponents = () => {
             className="flex max-[800px]:flex-col max-[800px]:gap-14 relative gap-4 items-start mb-10 max-[577px]:gap-5 "
           >
             <div className="w-full">
-              <AddressInfo form={form} />
+              <AddressInfo  />
             </div>
             <div className=" w-[530px] max-[800px]:w-full">
-              <Total setSelectedPayment={setSelectedPayment} />
+              <Total setTotalPrice={setTotalPrice}  setSelectedPayment={setSelectedPayment} />
               <button
                 type="submit"
                 className="w-full py-2 my-4 flex flex-col items-center bg-[#46a358] rounded-lg px-2   text-white"

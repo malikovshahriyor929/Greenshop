@@ -34,7 +34,8 @@ const Total = ({ params }: { params: CardType[] }) => {
         Cart Totals
       </p>
       <div className="mt-3">
-        <p className="text-[14px] text-[#3d3d3d] ">Coupon Apply</p>
+        <p className="text-[14px] text-[#3d3d3d] mb-2 ">Coupon Apply</p>
+        
         <Form
           onFinish={appliedCupon}
           className="!flex !border !items-center !rounded-lg !border-[#46a358] "
@@ -50,7 +51,7 @@ const Total = ({ params }: { params: CardType[] }) => {
             <Button
               x={10}
               y={9}
-              styles="cursor-pointer rounded-l-none rounded-r-md"
+              styles="cursor-pointer max-[530px]:!py-2 rounded-l-none rounded-r-md"
             >
               Apply
             </Button>

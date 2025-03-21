@@ -1,10 +1,6 @@
 import { Form, Input } from "antd";
 
-const AddressInfo = ({
-  form,
-}: {
-  form: any;
-}) => {
+const AddressInfo = () => {
   // console.log(setAddressInfo());
 
   // let addressInfo = (formValue: any) => {

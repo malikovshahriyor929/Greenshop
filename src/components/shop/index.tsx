@@ -14,9 +14,9 @@ const ShopComponents = () => {
     <>
       <div className="w-[90%] mx-auto max-w-[1440px] ">
         <Path />
-        <div className="flex relative gap-4 items-start mb-10 ">
+        <div className="flex relative max-[870px]:flex-col gap-4 items-start mb-10 ">
           <div className="w-full">
-            <div className="text-[#3d3d3d] grid grid-cols-[2fr_1fr_1fr_1fr] border-b py-3 border-[rgba(70,163,88,0.5)] ">
+            <div className="text-[#3d3d3d] grid grid-cols-[2fr_1fr_1fr_1fr]  border-b py-3 border-[rgba(70,163,88,0.5)] ">
               <p>Products</p>
               <p>Price</p>
               <p>Quantity</p>
@@ -28,12 +28,12 @@ const ShopComponents = () => {
                   <Card {...value}  />
                 </div>
               ))}
-             <div className="flex items-center pt-24 justify-center">
+             <div className="flex items-center pt-24 max-[870px]:py-0 justify-center">
              {!product.length&& <Empty/>}
              </div>
             </div>
           </div>
-          <div className="w-[430px] sticky top-0">
+          <div className="w-[430px] sticky top-0 max-[1000px]:w-[300px]  max-[870px]:w-full">
             <Total params={product} />
           </div>
         </div>
