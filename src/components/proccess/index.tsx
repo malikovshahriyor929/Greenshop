@@ -8,6 +8,7 @@ import { useReduxDispatch, useReduxSelector } from "../../hooks/useRedux";
 import { setModalVisibilty } from "../../redux/modalSlice";
 import { orderDataMutation } from "../../hooks/useQueryHandler/useQueryAction";
 import OrderDetails from "./modal/orderDetails";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const ProccessComponents = () => {
   let [details, setDetails] = useState({});
@@ -16,7 +17,7 @@ const ProccessComponents = () => {
   const [totalPrice, setTotalPrice] = useState(0) || 0;
   let locale = JSON.parse(localStorage.getItem("user") as string);
   let { product } = useReduxSelector((state) => state.ShopSlice);
-  let { mutate, isSuccess } = orderDataMutation();
+  let { mutate, isPending } = orderDataMutation();
   let dispatch = useReduxDispatch();
 
   const onFinish = (values: any) => {
@@ -56,7 +57,6 @@ const ProccessComponents = () => {
       <div className="w-[90%] mx-auto max-w-[1440px]">
         <Path />
         <div>{ModalVisibiltyForOrder && <OrderDetails props={details} />}</div>
-        {/* <div>{ <OrderDetails props={details} />}</div> */}
         <div>
           <Form
             form={form}
@@ -81,7 +81,7 @@ const ProccessComponents = () => {
                 type="submit"
                 className="w-full py-2 my-4 flex flex-col items-center bg-[#46a358] rounded-lg px-2   text-white"
               >
-                Place Order
+                {isPending ? <LoadingOutlined /> : "Place Order"}
               </button>
             </div>
           </Form>
