@@ -1,10 +1,13 @@
 import { useMutation } from "@tanstack/react-query";
 import { useAxios } from "../../useAxios";
 import { useReduxDispatch } from "../../useRedux";
-import { setModalVisibilty } from "../../../redux/modalSlice";
+import {
+  setModalVisibilty,
+  setModalVisibiltyForOrder,
+} from "../../../redux/modalSlice";
 import { notificationApi } from "../../../shared/generics/notification";
 import { signWithGoogle } from "../../../configs";
-import { notification } from "antd";
+import { message, notification } from "antd";
 
 export let useLoginMutation = () => {
   let axios = useAxios();
@@ -83,6 +86,23 @@ export const RegisterWithGoogle = () => {
       if (error?.status == 406) {
         notification.error({ message: "you already registered" });
       }
+    },
+  });
+};
+
+export const orderDataMutation = () => {
+  let axios = useAxios();
+  let dispatch = useReduxDispatch();
+  return useMutation({
+    mutationFn: (data: object) =>
+      axios({
+        url: "order/make-order",
+        body: data,
+        method: "POST",
+      }),
+    onSuccess: () => {
+      dispatch(setModalVisibiltyForOrder());
+      message.success("Order placed successfully!");
     },
   });
 };

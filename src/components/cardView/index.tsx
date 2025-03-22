@@ -1,6 +1,11 @@
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import useQueryHandler from "../../hooks/useQueryHandler";
-import { Image, Rate } from "antd";
+import { Empty, Image, Rate } from "antd";
 import Button from "../../shared/generics/btn";
 
 import { TiSocialFacebook } from "react-icons/ti";
@@ -14,13 +19,27 @@ import Descr from "./derc";
 const CardViewComponents = () => {
   let { id } = useParams();
   let [params, _] = useSearchParams({ category: "accessories" });
-
+  let navagate = useNavigate();
   const category = params.get("category") || "accessories";
 
   let { data } = useQueryHandler({
     pathname: `cardView-${category}`,
     url: `flower/category/${category}/${id}`,
   });
+
+  console.log(Boolean(data));
+  if (data == null) {
+    return (
+      <div className="top-0 left-0 h-full w-full absolute flex-col  gap-5  flex items-center justify-center">
+        <Empty />
+       <button className=" cursor-pointer   " onClick={()=>navagate("/")}>
+       <Button>
+          Go to shop
+        </Button>
+       </button>
+      </div>
+    );
+  }
 
   return (
     <>

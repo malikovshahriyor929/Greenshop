@@ -3,9 +3,9 @@ import CardForAddress from "./card";
 import paypal from "../../../shared/assets/svg/paymentType.svg";
 import { Empty, Radio } from "antd";
 let options = [
-  { value: "online", label: <img src={paypal} alt="" /> },
-  { value: "bank", label: "Dorect bank transfer" },
-  { value: "cash", label: "Cash on delivery" },
+  { value: "other-payment-methods", label: <img src={paypal} alt="" /> },
+  { value: "dorect-bank-transfer", label: "Dorect bank transfer" },
+  { value: "cash-on-delivery", label: "Cash on delivery" },
 ];
 const TotalForAddress = ({
   setSelectedPayment,
@@ -19,7 +19,11 @@ const TotalForAddress = ({
     (acc, value) => acc + value.price! * value.count!,
     0
   );
-  setTotalPrice(total)
+
+  const handlePaymentChange = (e: any) => {
+    setTotalPrice(total);
+    setSelectedPayment(e.target.value);
+  };
   return (
     <div className="flex flex-col gap-2">
       <h3 className="text-[17px] text-[#3d3d3d] font-bold mb-1 ">Your Order</h3>
@@ -35,7 +39,7 @@ const TotalForAddress = ({
       {!product.length && <Empty />}
       <div className="flex flex-col gap-5 max-[800px]:flex-row max-[800px]:items-center max-[500px]:flex-col ">
         <div className="max-[800px]:w-full">
-          <div className="mt-5 flex flex-col gap-3">
+          <div className="mt- flex flex-col gap-2">
             <div className="flex items-center text-[#3d3d3d]  justify-between">
               <p className="">Subtotal</p>
               <p className="font-medium text-[18px] ">$ {total.toFixed(2)}</p>
@@ -49,7 +53,7 @@ const TotalForAddress = ({
               <p className="font-medium text-[18px] ">$ 0</p>
             </div>
           </div>
-          <div className="flex items-center text-[#3d3d3d] mt-5  justify-between">
+          <div className="flex items-center text-[#3d3d3d] mt-  justify-between">
             <p className="">Total</p>
             <p className="font-bold text-[#46a358] text-[18px] ">
               $ {total.toFixed(2)}
@@ -62,7 +66,9 @@ const TotalForAddress = ({
               className={`!flex !flex-col *:!flex  !gap-3 *:rounded-lg *:!p-2 *:items-center  w-full *:border *:border-[#46a358]`}
               id="paypal"
               options={options}
-              onChange={(e) => setSelectedPayment(e.target.value)}
+              onChange={(e) => {
+                handlePaymentChange(e);
+              }}
             />
           </div>
         </div>

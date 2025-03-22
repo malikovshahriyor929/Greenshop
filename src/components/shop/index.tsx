@@ -7,9 +7,6 @@ import { Empty } from "antd";
 
 const ShopComponents = () => {
   let { product } = useReduxSelector((state) => state.ShopSlice);
-  console.log(product);
-  
-
   return (
     <>
       <div className="w-[90%] mx-auto max-w-[1440px] ">
