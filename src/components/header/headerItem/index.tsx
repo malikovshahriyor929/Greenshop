@@ -6,8 +6,9 @@ import home from "../../../shared/assets/svg/headerHome.svg";
 import { BsHeartFill } from "react-icons/bs";
 import { IoMdCart } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
+import { Badge } from "antd";
 
-const HeaderItem = () => {
+const HeaderItem = ({ length }: { length: number }) => {
   return (
     <div className="hidden z-[999] max-[600px]:block bg-white rounded-t-2xl shadow-[1px_2px_30px_0px_rgba(0,0,0,0.12)]  w-full fixed bottom-0 left-0 ">
       {/* <div className="fixed bottom-0 left-0 w-full   ">
@@ -17,14 +18,15 @@ const HeaderItem = () => {
         <Link to={"/"}>
           <img src={home} alt="" />
         </Link>
-
-        <Link to={"/blogs"}>
+        <Link to={"/"}>
           <BsHeartFill className="text-[#D9D9D9]" />
         </Link>
+        <Badge dot count={length}>
+          <Link to={"/shopping_cart"}>
+            <IoMdCart size={20} className="text-[#D9D9D9]" />
+          </Link>
+        </Badge>
         <Link to={"/"}>
-          <IoMdCart size={20} className="text-[#D9D9D9]" />
-        </Link>
-        <Link to={"/blogs"}>
           <FaUser size={20} className="text-[#D9D9D9]" />
         </Link>
       </div>

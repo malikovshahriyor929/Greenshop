@@ -103,7 +103,7 @@ const Header = () => {
       </div>
 
       <div>
-        <HeaderItem />
+        <HeaderItem length={product.length} />
       </div>
     </div>
   );
