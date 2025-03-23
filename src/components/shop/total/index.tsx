@@ -38,7 +38,7 @@ const Total = ({ params }: { params: CardType[] }) => {
         
         <Form
           onFinish={appliedCupon}
-          className="!flex !border !items-center !rounded-lg !border-[#46a358] "
+          className="!flex !border !items-center  !rounded-lg !border-[#46a358] "
         >
           <Form.Item name="coupon_code" className="w-full">
             <Input
@@ -47,7 +47,7 @@ const Total = ({ params }: { params: CardType[] }) => {
               placeholder="Enter coupon code here..."
             />
           </Form.Item>
-          <button type="submit">
+          <button type="submit" className="bg-[#46a358] rounded-r-lg">
             <Button
               x={10}
               y={9}

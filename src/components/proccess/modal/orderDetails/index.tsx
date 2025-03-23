@@ -24,17 +24,17 @@ const OrderDetails = ({ props }: { props: any }) => {
             <img src={thanks} alt="" />
             <p className="text-[#727272]">Your order has been received</p>
           </div>
-          <div className="flex justify-between items-center gap-2 py-3 border-b border-[rgba(70,163,88,0.2)]">
+          <div className="flex justify-between max-[565px]:grid grid-cols-2  items-center gap-2 py-3 border-b border-[rgba(70,163,88,0.2)]">
             <div>
               <p className="text-[#727272] text-[14px]">Order Number</p>
               <p className="text-[#727272] font-bold">19586687</p>
             </div>
-            <Divider type="vertical" />
+            <Divider type="vertical" className="max-[565px]:!hidden" />
             <div>
               <p className="text-[#727272] text-[14px]">Date</p>
               <p className="text-[#727272] font-bold">15 Sep, 2021</p>
             </div>
-            <Divider type="vertical" />
+            <Divider type="vertical" className="max-[565px]:!hidden" />
 
             <div>
               <p className="text-[#727272] text-[14px]">Total</p>
@@ -42,10 +42,11 @@ const OrderDetails = ({ props }: { props: any }) => {
                 $ {props?.extra_shop_info?.total}
               </p>
             </div>
-            <Divider type="vertical" />
+            <Divider type="vertical" className="max-[565px]:!hidden" />
             <div>
-              <p className="text-[#727272] text-[14px]">Payment Method</p>
-              <p className="text-[#727272] font-bold">
+              <p className="text-[#727272] text-[14px] max-[310px]:text-[12px]">Payment Method</p>
+              <p className="text-[#727272] font-bold max-[310px]:text-[12px] 
+               ">
                 {props?.extra_shop_info?.method}
               </p>
             </div>
