@@ -51,7 +51,7 @@ const Total = ({ params }: { params: CardType[] }) => {
             <Button
               x={10}
               y={9}
-              styles="cursor-pointer max-[530px]:!py-2 rounded-l-none rounded-r-md"
+              styles="cursor-pointer max-[530px]:!py-3 rounded-l-none rounded-r-md"
             >
               Apply
             </Button>
