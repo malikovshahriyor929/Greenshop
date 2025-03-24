@@ -38,10 +38,22 @@ export interface CardType {
   created_at?: string;
   __v?: number;
   category?: string;
-  count?: number ;
+  count?: number;
 }
 export interface TitleCategoryType {
   id: number;
   title: string;
   label: string;
+}
+
+export interface BlogPosts {
+  content: string;
+  created_at: string;
+  created_by: string;
+  reaction_length: number;
+  short_description: string;
+  title: string;
+  views: number;
+  __v: number;
+  _id: string;
 }

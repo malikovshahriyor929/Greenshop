@@ -5,6 +5,8 @@ import MainLayout from "../shared/layout";
 import CardView from "../pages/cardView";
 import Shop from "../pages/shop";
 import Proccess from "../pages/proccess";
+import AboutPost from "../components/blog/posts/aboutPosts";
+import AboutProfile from "../components/blog/posts/aboutPosts/user/AboutProfile";
 
 export const router = createBrowserRouter([
   {
@@ -24,12 +26,20 @@ export const router = createBrowserRouter([
         element: <Blogs />,
       },
       {
+        path: "/blogs/:id",
+        element: <AboutPost />,
+      },
+      {
         path: "/shopping_cart",
         element: <Shop />,
       },
       {
         path: "/shop/checkout",
         element: <Proccess />,
+      },
+      {
+        path: "blog/profile/:user",
+        element: <AboutProfile />,
       },
     ],
   },

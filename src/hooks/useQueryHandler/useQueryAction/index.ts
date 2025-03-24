@@ -8,6 +8,7 @@ import {
 import { notificationApi } from "../../../shared/generics/notification";
 import { signWithGoogle } from "../../../configs";
 import { message, notification } from "antd";
+// import { renderView } from "../../../redux/cardViewSlice";
 
 export let useLoginMutation = () => {
   let axios = useAxios();
@@ -103,6 +104,24 @@ export const orderDataMutation = () => {
     onSuccess: () => {
       dispatch(setModalVisibiltyForOrder());
       message.success("Order placed successfully!");
+    },
+  });
+};
+
+export const BlogView = () => {
+  let axios = useAxios();
+  // let dispatch = useReduxDispatch();
+
+  return useMutation({
+    mutationFn: (data: object) =>
+      axios({
+        url: "user/blog/view",
+        method: "PUT",
+        body: data,
+      }),
+    onSuccess: (data) => {
+      // dispatch(renderView(1))
+      console.log(data);
     },
   });
 };
