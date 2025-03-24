@@ -39,7 +39,6 @@ const ProccessComponents = () => {
         method: selectedPayment,
       },
     });
-
     setDetails({
       shop_list: product,
       billing_address: { name: values.name, surname: values.surname },
