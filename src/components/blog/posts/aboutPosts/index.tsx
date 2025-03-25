@@ -4,7 +4,7 @@ import { BlogPosts } from "../../../../@types";
 import Footer from "../../../footer";
 import { EyeOutlined } from "@ant-design/icons";
 import Profile from "./user";
-import {  useReduxSelector } from "../../../../hooks/useRedux";
+
 
 const AboutPost = () => {
   let { id } = useParams();
@@ -12,7 +12,7 @@ const AboutPost = () => {
     pathname: "created_by",
     url: `user/blog/created-by/${id}`,
   });
-  let { category } = useReduxSelector((state) => state.CardSlice);
+
   return (
     <>
       <div className="w-[90%] mx-auto max-w-[1440px] mb-10">
@@ -24,7 +24,7 @@ const AboutPost = () => {
             <div className=" mt-5 flex items-center gap-3 ">
               <EyeOutlined />
               <p >
-                {category}
+                {value.views+1}
               </p>
             </div>
           </div>
