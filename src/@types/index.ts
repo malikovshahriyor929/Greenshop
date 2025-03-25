@@ -57,3 +57,26 @@ export interface BlogPosts {
   __v: number;
   _id: string;
 }
+
+export interface UserInfoType {
+  billing_address?: object;
+  create_account_limit?: number;
+  create_plant_limit?: number;
+  create_post_limit?: number;
+  created_at?: string;
+  created_by?: string;
+  email?: string;
+  followers?: object[];
+  hashtags?: object[];
+  name?: string;
+  order_list?: object[];
+  password?: string;
+  permission?: { create?: false; update?: false; delete?: false; read?: true };
+  profile_photo?: string;
+  surname?: string;
+  user_type?: string;
+  username?: string;
+  wishlist?: object[];
+  __v?: number;
+  _id?: string;
+}

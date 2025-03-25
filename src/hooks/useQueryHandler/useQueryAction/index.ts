@@ -113,8 +113,6 @@ export const orderDataMutation = () => {
 
 export const BlogView = () => {
   let axios = useAxios();
-  // let dispatch = useReduxDispatch();
-
   return useMutation({
     mutationFn: (data: object) =>
       axios({
@@ -122,9 +120,18 @@ export const BlogView = () => {
         method: "PUT",
         body: data,
       }),
-    onSuccess: (data) => {
-      // dispatch(renderView(1))
-      console.log(data);
-    },
+  });
+};
+
+export const AccountDetails = () => {
+  let axios = useAxios();
+  // let { getCookie, setCookie } = CookiesInfo();
+  return useMutation({
+    mutationFn: (data: object) =>
+      axios({
+        method: "POST",
+        body: data,
+        url: "user/account-details",
+      }),
   });
 };
