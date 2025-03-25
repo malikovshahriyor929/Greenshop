@@ -5,11 +5,13 @@ import { setModalVisibiltyForOrder } from "../../../../redux/modalSlice";
 import thanks from "../../../../shared/assets/svg/thank-you 1 (1).svg";
 import CardForAddress from "../../totalForAddress/card";
 import Button from "../../../../shared/generics/btn";
+import { useNavigate } from "react-router-dom";
 
 const OrderDetails = ({ props }: { props: any }) => {
   let { ModalVisibiltyForOrder } = useReduxSelector(
     (state) => state.modalSlice
   );
+  let navigate = useNavigate();
   let dispatch = useReduxDispatch();
   return (
     <div>
@@ -44,9 +46,13 @@ const OrderDetails = ({ props }: { props: any }) => {
             </div>
             <Divider type="vertical" className="max-[565px]:!hidden" />
             <div>
-              <p className="text-[#727272] text-[14px] max-[310px]:text-[12px]">Payment Method</p>
-              <p className="text-[#727272] font-bold max-[310px]:text-[12px] 
-               ">
+              <p className="text-[#727272] text-[14px] max-[310px]:text-[12px]">
+                Payment Method
+              </p>
+              <p
+                className="text-[#727272] font-bold max-[310px]:text-[12px] 
+               "
+              >
                 {props?.extra_shop_info?.method}
               </p>
             </div>
@@ -81,7 +87,7 @@ const OrderDetails = ({ props }: { props: any }) => {
             items.
           </p>
           <button
-            onClick={() => dispatch(setModalVisibiltyForOrder())}
+            onClick={() => navigate("/profile/tracking")}
             className="flex items-center flex-col w-full"
           >
             <Button x={20} y={10}>

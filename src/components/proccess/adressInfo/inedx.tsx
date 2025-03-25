@@ -1,11 +1,6 @@
 import { Form, Input } from "antd";
 
 const AddressInfo = () => {
-  // console.log(setAddressInfo());
-
-  // let addressInfo = (formValue: any) => {
-  //   console.log(formValue);
-  // };
   return (
     <div>
       <p className="text-[17px] text-[#3d3d3d] font-bold mb-5 ">
@@ -59,7 +54,7 @@ const AddressInfo = () => {
           <Form.Item
             layout="vertical"
             label="Street Address"
-            name="extra_address"
+            name="street_address"
             rules={[
               { required: true, message: "Please input your street address!" },
             ]}
@@ -106,17 +101,6 @@ const AddressInfo = () => {
   );
 };
 
-[
-  {
-    billing_address: {
-      country: "Uzbekistan",
-      town: "Namangan",
-      street_address: "Muruvvat",
-      state: "Uchkurgan",
-      zip: "190001",
-      extra_address: "Home 25",
-    },
-  },
-];
+
 
 export default AddressInfo;

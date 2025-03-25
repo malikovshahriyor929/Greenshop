@@ -26,10 +26,12 @@ let ShopSlice = createSlice({
       }
       localStorage.setItem("product", JSON.stringify(state.product));
     },
+    removeToCart: (state) => {
+      state.product = [];
+    },
     deleteCart: (state, { payload }) => {
       state.product = state.product.filter((value) => value._id !== payload.id);
       localStorage.setItem("product", JSON.stringify(state.product));
-
     },
     increment: (state, { payload }) => {
       state.product = state.product.map((value) =>
@@ -53,5 +55,6 @@ let ShopSlice = createSlice({
   },
 });
 
-export const { addToCart, increment, decrement,deleteCart } = ShopSlice.actions;
+export const { addToCart, increment, decrement, deleteCart,removeToCart } =
+  ShopSlice.actions;
 export default ShopSlice.reducer;

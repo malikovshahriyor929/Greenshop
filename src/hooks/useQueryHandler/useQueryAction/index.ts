@@ -125,7 +125,6 @@ export const BlogView = () => {
 
 export const AccountDetails = () => {
   let axios = useAxios();
-  // let { getCookie, setCookie } = CookiesInfo();
   return useMutation({
     mutationFn: (data: object) =>
       axios({
@@ -133,5 +132,19 @@ export const AccountDetails = () => {
         body: data,
         url: "user/account-details",
       }),
+  });
+};
+export const AddressMutation = () => {
+  let axios = useAxios();
+  return useMutation({
+    mutationFn: (data: object) =>
+      axios({
+        method: "POST",
+        body: data,
+        url: "user/address",
+      }),
+    onSuccess(data) {
+      message.success(data?.message);
+    },
   });
 };
