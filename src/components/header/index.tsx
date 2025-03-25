@@ -13,15 +13,17 @@ import { setModalVisibilty } from "../../redux/modalSlice";
 import { Badge, Drawer } from "antd";
 import { useState } from "react";
 import CategorySide from "../catecory/category";
+import CookiesInfo from "../../shared/generics/cookie";
 
 const Header = () => {
   let navigate = useNavigate();
 
   let [filterBtn, setFilterBtn] = useState(false);
   let { pathname } = useLocation();
-  let user = JSON.parse(localStorage.getItem("user") as string);
   let dispatch = useReduxDispatch();
-  let {product} = useReduxSelector(state=>state.ShopSlice)
+  let { product } = useReduxSelector((state) => state.ShopSlice);
+  let { getCookie, isAuthorization } = CookiesInfo();
+  let user = getCookie("user");
   return (
     <div>
       <div className="w-[90%] mx-auto max-w-[1440px]  max-[600px]: pt-5 max-[600px]:border-none border-b border-[rgba(70,163,88,0.5)]">
@@ -60,11 +62,16 @@ const Header = () => {
                 <img src={cart} alt="" />
               </Badge>
             </button>
+
             <button
-              onClick={() => dispatch(setModalVisibilty())}
+              onClick={() => {
+                isAuthorization
+                  ? navigate("/profile")
+                  : dispatch(setModalVisibilty());
+              }}
               className="bg-[#46a358] rounded-lg px-2 py-1 flex  gap-1 text-white "
             >
-              {user ? (
+              {isAuthorization ? (
                 user.name
               ) : (
                 <>

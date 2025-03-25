@@ -7,6 +7,7 @@ import Shop from "../pages/shop";
 import Proccess from "../pages/proccess";
 import AboutPost from "../components/blog/posts/aboutPosts";
 import AboutProfile from "../components/blog/posts/aboutPosts/user/AboutProfile";
+import Profile from "../pages/profile";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
       {
         path: "blog/profile/:user",
         element: <AboutProfile />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
     ],
   },
