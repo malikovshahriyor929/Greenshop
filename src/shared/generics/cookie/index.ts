@@ -6,7 +6,7 @@ let CookiesInfo = () => {
   };
 
   const setCookie = (key: string, data: string) => {
-    return Cookies.set(key, JSON.stringify(data));
+    return Cookies.set(key, JSON.stringify(data), { expires: 12 / 24 });
   };
 
   const isAuthorization = getCookie("user") ? true : false;
