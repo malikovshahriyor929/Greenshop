@@ -14,8 +14,8 @@ let CategorySkeleton = ({ length }: { length: number }) => {
 let cardSkeleton = () => {
   return (
     <div className="w-full flex flex-col gap-4">
-      <Skeleton.Image className="min-w-[250px] max-[600px]:max-w-[200px] max-[520px]:!max-w-[50px] max-[400px]:min-w-[100%] min-h-[250px] w-full mx-auto " />
-      <Skeleton className="mx-auto max-w-[250px]" />
+      <Skeleton.Image active className="min-w-[250px] max-[600px]:max-w-[200px] max-[520px]:!max-w-[50px] max-[400px]:min-w-[100%] min-h-[250px] w-full mx-auto " />
+      <Skeleton active className="mx-auto max-w-[250px]" />
     </div>
   );
 };

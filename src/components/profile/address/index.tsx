@@ -27,26 +27,12 @@ const Address = () => {
       setCookie("user", datas);
     }
   };
-  [
-    {
-      _id: "64bebc1e2c6d3f056a8c85b7",
-      name: "User",
-      surname: "Userov",
-      country: "Uzbekistan",
-      town: "Namangan",
-      street_address: "Muruvvat",
-      state: "Uchkurgan",
-      zip: "190001",
-      email: "user@gmail.com",
-      phone_number: "+998777771565",
-    },
-  ];
   return (
     <div>
       <Form
         onFinish={handleChange}
         layout="vertical"
-        className="grid grid-cols-2 gap-5 items-center"
+        className="grid grid-cols-2  max-[450px]:grid-cols-1  gap-5 items-center"
         initialValues={userData}
       >
         <Form.Item

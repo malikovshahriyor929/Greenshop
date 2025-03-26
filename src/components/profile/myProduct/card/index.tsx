@@ -6,23 +6,11 @@ import { TbShoppingCart } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import { useReduxDispatch } from "../../../../hooks/useRedux";
 import { addToCart } from "../../../../redux/shopSlice";
-import { Create_Wishlist } from "../../../../hooks/useQueryHandler/useQueryAction";
 
-const Card = (props: CardType) => {
+const Card = (props:any) => {
   let dispatch = useReduxDispatch();
   let navigate = useNavigate();
-  let {mutate}= Create_Wishlist()
-  let liked = (data: CardType) => {
-    mutate({route_path:data?.category,flower_id:data?._id});
-    
-    // mutate({route_path:data.})
-  };
-  [
-    {
-      route_path: "house-plants",
-      flower_id: "64c4b664b4119fdcdbfcd412",
-    },
-  ];
+
   return (
     <div className=" flex flex-col gap-3">
       <div className="cartHover overflow-hidden relative">
@@ -40,7 +28,7 @@ const Card = (props: CardType) => {
           >
             <TbShoppingCart size={25} />
           </div>
-          <div onClick={() => liked(props)} className="bg-white p-1 rounded-lg">
+          <div onClick={() => ""} className="bg-white p-1 rounded-lg">
             <BiHeart size={25} />
           </div>
           <div

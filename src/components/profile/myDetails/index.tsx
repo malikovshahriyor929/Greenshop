@@ -50,9 +50,9 @@ const MyDeaitls = () => {
       console.error("Upload failed:", info.file.response);
     }
   };
-  const handlePreview = (file: any) => {
-    const url = file.url || file.thumbUrl;
-    window.open(url, "_blank");
+  const handlePreview = (_: any) => {
+    // const url = file.url || file.thumbUrl;
+    // window.open(url, "_blank");
   };
 
   const defaultUserData = {
@@ -78,7 +78,7 @@ const MyDeaitls = () => {
       <Form
         onFinish={handleChange}
         layout="vertical"
-        className="grid grid-cols-2 gap-5 items-center"
+        className="grid grid-cols-2 max-[450px]:grid-cols-1 gap-5 items-center"
         initialValues={userData}
       >
         <Form.Item

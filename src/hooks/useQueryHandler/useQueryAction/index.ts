@@ -148,3 +148,33 @@ export const AddressMutation = () => {
     },
   });
 };
+
+export const DeleteOrderMutaion = () => {
+  let axios = useAxios();
+  return useMutation({
+    mutationFn: (data: object) =>
+      axios({
+        url: "order/delete-order",
+        method: "POST",
+        body: data,
+      }),
+    onSuccess: (data) => {
+      console.log(data);
+    },
+  });
+};
+
+export const Create_Wishlist = () => {
+  let axios = useAxios();
+  return useMutation({
+    mutationFn: (data: object) =>
+      axios({
+        method: "POST",
+        body: data,
+        url: "user/create-wishlist",
+      }),
+      onSuccess(data) {
+        message.success(data?.message);
+      },
+  });
+};

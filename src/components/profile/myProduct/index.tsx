@@ -1,8 +1,32 @@
+import { Empty } from "antd";
 
 const MyProduct = () => {
-  return (
-    <div>MyProduct</div>
-  )
-}
+  // let {data,isLoading,isError}= useQueryHandler({
+  //   pathname:"get",
+  //   url:"user/products"
+  // })
+  // // console.log(data);
 
-export default MyProduct
+  return (
+    <div>
+      <div className="grid grid-cols-3 my-5 gap-5  max-[1130px]:grid-cols-2 max-[710px]:grid-cols-1 max-[600px]:grid-cols-2 max-[340px]:grid-cols-1">
+        {/* {isLoading || isError
+          ? Array.from({ length: 6 }).map((_, idx) => (
+              <div className="" key={idx}>
+                {cardSkeleton()}
+              </div>
+            ))
+          : data?.map((value: CardType) => (
+              <div key={value?._id}>
+                <Card props={value}  />
+              </div>
+            ))} */}
+      </div>
+      <div className="h-full w-full">
+        <Empty />
+      </div>
+    </div>
+  );
+};
+
+export default MyProduct;
