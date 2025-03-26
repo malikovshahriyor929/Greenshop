@@ -24,7 +24,7 @@ export interface CardType {
   _id?: string;
   title?: string;
   price?: number;
-  discount?: any;
+  // discount?: any;
   discount_price?: string;
   short_description?: string;
   description?: string;

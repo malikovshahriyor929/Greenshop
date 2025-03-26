@@ -1,7 +1,7 @@
-import { Card, Empty } from "antd";
+import { Empty } from "antd";
 import useQueryHandler from "../../../hooks/useQueryHandler";
 import { cardSkeleton } from "../../../shared/generics/loader";
-import { CardType } from "../../../@types";
+import Card from "./card";
 
 const MyProduct = () => {
   let { data, isLoading, isError } = useQueryHandler({
@@ -18,15 +18,13 @@ const MyProduct = () => {
                 {cardSkeleton()}
               </div>
             ))
-          : data?.map((value:CardType) => (
+          : data?.map((value: any) => (
               <div key={value?._id}>
-                <Card {...value}  />
+                <Card {...value} />
               </div>
             ))}
       </div>
-      <div className="h-full w-full">
-        <Empty />
-      </div>
+      <div className="h-full w-full">{isError && <Empty />}</div>
     </div>
   );
 };

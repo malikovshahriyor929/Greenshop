@@ -1,4 +1,4 @@
-import { Avatar, Form, Input, Upload, UploadProps } from "antd";
+import {  Form, Input, Upload, UploadProps } from "antd";
 import CookiesInfo from "../../../shared/generics/cookie";
 import Button from "../../../shared/generics/btn";
 import { AccountDetails } from "../../../hooks/useQueryHandler/useQueryAction";
@@ -8,8 +8,7 @@ const MyDeaitls = () => {
   let { getCookie, setCookie } = CookiesInfo();
   let id = getCookie("user")?._id;
   let { mutate, isError } = AccountDetails();
-  const [fileList, setFileList] = useState([]);
-  const [imageUrl, setImageUrl] = useState(
+  const [_, setImageUrl] = useState(
     "https://alqadir.edu.pk/wp-content/uploads/2022/09/BS-Islamic-Studies-2022.jpg"
   );
 
