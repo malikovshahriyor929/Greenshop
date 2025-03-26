@@ -41,6 +41,12 @@ const Register = () => {
             <Input placeholder="almamun_uxui@outlook.com" />
           </Form.Item>
           <Form.Item<FieldType>
+            name="phone_number"
+            rules={[{ required: true, message: "Please input your phone number!" }]}
+          >
+            <Input placeholder="+99890000000" />
+          </Form.Item>
+          <Form.Item<FieldType>
             name="password"
             rules={[{ required: true, message: "Please input your password!" }]}
           >

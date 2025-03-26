@@ -8,6 +8,7 @@ export type FieldType = {
   password?: string;
   name?: string;
   surname?: string;
+  phone_number?: number;
 };
 
 export interface CategorySideType {
@@ -24,7 +25,7 @@ export interface CardType {
   _id?: string;
   title?: string;
   price?: number;
-  // discount?: any;
+  discount?: any;
   discount_price?: string;
   short_description?: string;
   description?: string;
