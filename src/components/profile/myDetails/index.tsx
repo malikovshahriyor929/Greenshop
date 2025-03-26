@@ -39,7 +39,7 @@ const MyDeaitls = () => {
   };
   const userData = getCookie("user") || defaultUserData;
   return (
-    <div className=" w-full ">
+    <div className=" w-full mt-6 ">
       {/* <Avatar src={imageUrl} /> */}
       <Form
         onFinish={handleChange}

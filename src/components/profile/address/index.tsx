@@ -28,7 +28,7 @@ const Address = () => {
     }
   };
   return (
-    <div>
+    <div className=" mt-6 ">
       <Form
         onFinish={handleChange}
         layout="vertical"

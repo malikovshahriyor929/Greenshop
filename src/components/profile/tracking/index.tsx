@@ -4,7 +4,6 @@ import { cardSkeleton } from "../../../shared/generics/loader";
 import OrderCard from "./order";
 
 const Tracking = () => {
-  // let [myData, setMyData] = useState<CardType[]>([]);
   let { getCookie } = CookiesInfo();
   let userInfo = getCookie("user");
   let { data, isLoading } = useQueryHandler({

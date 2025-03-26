@@ -132,6 +132,9 @@ export const AccountDetails = () => {
         body: data,
         url: "user/account-details",
       }),
+      onSuccess(data) {
+        message.success(data.message)
+      },
   });
 };
 export const AddressMutation = () => {
