@@ -1,4 +1,4 @@
-import { Form, Input, Upload } from "antd";
+import { Avatar, Form, Input, Upload, UploadProps } from "antd";
 import CookiesInfo from "../../../shared/generics/cookie";
 import Button from "../../../shared/generics/btn";
 import { AccountDetails } from "../../../hooks/useQueryHandler/useQueryAction";
@@ -12,48 +12,6 @@ const MyDeaitls = () => {
   const [imageUrl, setImageUrl] = useState(
     "https://alqadir.edu.pk/wp-content/uploads/2022/09/BS-Islamic-Studies-2022.jpg"
   );
-  // const handleUploadChange = (info: any) => {
-  //   if (info.file.status === "done") {
-  //     console.log("File uploaded successfully:", info.file.response);
-
-  //     const uploadedUrl = info.file.response?.url||""
-  //     if (uploadedUrl) {
-  //       setImageUrl(uploadedUrl);
-  //     } else {
-  //       const file = info.file.originFileObj;
-  //       const reader = new FileReader();
-  //       reader.onload = (e) => setImageUrl(e.target?.result as string);
-  //       reader.readAsDataURL(file);
-  //       console.log(file);
-
-  //     }
-
-  //     setFileList(info.fileList); // Update file list
-  //   } else if (info.file.status === "error") {
-  //     console.error("Upload failed:", info.file.response);
-  //   }
-  // };
-
-  const handleUploadChange = (info: any) => {
-    if (info.file.status === "done") {
-      console.log("File uploaded successfully:", info.file.response);
-
-      // Extract the URL from the response
-      const uploadedUrl = info.file.response?.url || "";
-      if (uploadedUrl) {
-        setImageUrl(uploadedUrl);
-      } else {
-        console.error("No URL returned from server!");
-      }
-      setFileList(info.fileList);
-    } else if (info.file.status === "error") {
-      console.error("Upload failed:", info.file.response);
-    }
-  };
-  const handlePreview = (_: any) => {
-    // const url = file.url || file.thumbUrl;
-    // window.open(url, "_blank");
-  };
 
   const defaultUserData = {
     _id: "",
@@ -64,17 +22,26 @@ const MyDeaitls = () => {
     username: "",
     profile_photo: "",
   };
-  const handleChange = async (formValue: object) => {
+  const handleChange = async (formValue: any) => {
     // console.log(formValue.profile_photo.file.response?.url );
-    mutate({ ...formValue, _id: id, profile_photo: imageUrl });
+    setImageUrl(formValue.profile_photo[0].thumbUrl);
+    mutate({
+      ...formValue,
+      _id: id,
+      profile_photo: formValue.profile_photo[0].thumbUrl,
+    });
     if (!isError) {
       let datas = { ...getCookie("user"), ...formValue };
       setCookie("user", datas);
     }
   };
+  const uploadProps: UploadProps = {
+    beforeUpload: () => false,
+  };
   const userData = getCookie("user") || defaultUserData;
   return (
     <div className=" w-full ">
+      {/* <Avatar src={imageUrl} /> */}
       <Form
         onFinish={handleChange}
         layout="vertical"
@@ -118,29 +85,16 @@ const MyDeaitls = () => {
         >
           <Input placeholder="nickname" type="text" />
         </Form.Item>
-        {/* img */}
+
         <Form.Item
-          label="profile img"
+          label={<span style={{ fontWeight: "bold" }}>Image</span>}
           name="profile_photo"
-          rules={[{ required: true, message: "Please give your photo !" }]}
-          className="cursor-pointer "
+          valuePropName="image"
+          getValueFromEvent={(e) => e && e.fileList}
+          rules={[{ required: true }]}
         >
-          <Upload
-            name="profile_photo"
-            action="https://beckend-n14.onrender.com/api/upload?access_token=64bebc1e2c6d3f056a8c85b7"
-            method="POST"
-            listType="picture"
-            data={{ type: "img" }}
-            headers={{
-              "Content-Type": "multipart/form-data",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            }}
-            accept=".png,.jpg,.jpeg"
-            onPreview={handlePreview}
-            fileList={fileList}
-            onChange={handleUploadChange}
-          >
-            <Button>Click to Upload</Button>
+          <Upload {...uploadProps} listType="picture">
+            <Button>Upload</Button>
           </Upload>
         </Form.Item>
         <button type="submit" className="w-fit mt-auto ">

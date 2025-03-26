@@ -33,13 +33,13 @@ const CategorySide = () => {
               <div
                 onClick={() => {
                   setUrlParams({
-                    category: value.route_path!,
+                    category: value?.route_path!,
                     range_min,
                     range_max,
                     type,
                     sort,
                   }),
-                    setParam(value.route_path!);
+                    setParam(value?.route_path!);
                 }}
                 key={value?._id}
                 className="my-2 "
