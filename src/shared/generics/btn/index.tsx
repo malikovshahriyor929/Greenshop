@@ -4,7 +4,7 @@ const Button = ({
   y = 4,
   styles,
 }: {
-  children: string;
+  children: any;
   x?: number;
   y?: number;
   styles?: string;

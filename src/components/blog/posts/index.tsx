@@ -14,7 +14,7 @@ import { renderView } from "../../../redux/cardViewSlice";
 const Posts = () => {
   let [params, _] = useSearchParams({ search: "" }) || "";
 
-  let { data, isLoading } = useQueryHandler({
+  let { data, isLoading,isError } = useQueryHandler({
     pathname: `posts-${params}`,
     url: "user/blog",
     params: {
@@ -34,6 +34,7 @@ const Posts = () => {
         {data?.map((value: BlogPosts) => (
           <Card
             key={value._id}
+            title={value?.title}
             onClick={() => {
               navigate(`/blogs/${value.created_by}`);
               setView(value?._id);
@@ -42,27 +43,30 @@ const Posts = () => {
             actions={[
               <div className=" flex items-center justify-center gap-2">
                 <EyeOutlined key="view" />
-                <p>{value?.views }</p>
+                <p>{value?.views}</p>
               </div>,
               <HeartOutlined key="setting" />,
               <EllipsisOutlined key="ellipsis" />,
             ]}
-            className=" flex flex-col justify-between"
+            className=" flex flex-col justify-between !cursor-pointer"
           >
-            <Card.Meta
+            {/* <Card.Meta
               title={value?.title}
               description={
                 <>
-                  <p>{value?.short_description.slice(0, 140)}...</p>
+
                 </>
               }
-            />
+              /> */}
+            <p className="!cursor-pointer ">
+              {value?.short_description.slice(0, 140)}...
+            </p>
           </Card>
         ))}
-        {isLoading &&
+        {isLoading    || isError &&
           Array(15)
             .fill("1")
-            .map((_, idx) => <Skeleton key={idx} />)}
+            .map((_, idx) => <Skeleton active key={idx} />)}
       </div>
       {data?.length == 0 && <Empty className="mx-auto mb-10 " />}
     </>

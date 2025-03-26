@@ -13,6 +13,10 @@ import MyProduct from "../components/profile/myProduct";
 import Address from "../components/profile/address";
 import Wishlist from "../components/profile/wishList";
 import Tracking from "../components/profile/tracking";
+import Liked from "../components/blog/posts/aboutPosts/user/AboutProfile/aboutPages/like";
+import Follow from "../components/blog/posts/aboutPosts/user/AboutProfile/aboutPages/followers";
+import PostsForAbout from "../components/blog/posts/aboutPosts/user/AboutProfile/aboutPages/posts";
+import ProductForAbout from "../components/blog/posts/aboutPosts/user/AboutProfile/aboutPages/product";
 
 export const router = createBrowserRouter([
   {
@@ -44,8 +48,26 @@ export const router = createBrowserRouter([
         element: <Proccess />,
       },
       {
-        path: "blog/profile/:user",
+        path: "/blogs/profile/:user",
         element: <AboutProfile />,
+        children: [
+          {
+            path: "/blogs/profile/:user",
+            element: <Liked />,
+          },
+          {
+            path: "/blogs/profile/:user/followers",
+            element: <Follow />,
+          },
+          {
+            path: "/blogs/profile/:user/posts",
+            element: <PostsForAbout />,
+          },
+          {
+            path: "/blogs/profile/:user/products",
+            element: <ProductForAbout />,
+          },
+        ],
       },
       {
         path: "/profile",
