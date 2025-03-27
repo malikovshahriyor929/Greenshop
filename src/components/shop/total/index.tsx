@@ -26,6 +26,8 @@ const Total = ({ params }: { params: CardType[] }) => {
       message.success(data.message);
     });
   };
+  console.log(discount);
+
   let coupon: any = cupon;
 
   return (
@@ -75,10 +77,15 @@ const Total = ({ params }: { params: CardType[] }) => {
       </div>
       <div className="flex items-center text-[#3d3d3d] mt-5  justify-between">
         <p className="">Total</p>
-        {discount !== 0  ? (
+        {discount !== 0 ? (
           <div className="font-bold text-[#46a358] text-[18px] ">
             <p className="line-through text-gray-500"> $ {total.toFixed(2)}</p>
-            <p>${discount}</p>
+            <p>
+              $
+              {discount
+                ? discount
+                : (total - (total * coupon.discount_for) / 100).toFixed(2)}
+            </p>
           </div>
         ) : (
           <p className="font-bold text-[#46a358] text-[18px] ">

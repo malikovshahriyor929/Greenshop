@@ -15,7 +15,6 @@ const AboutProfile = () => {
     pathname: "userhg",
     url: `user/by_id/${user}`,
   });
-  // console.log(data);
   let datas: UserInfoType = data;
   let load = isLoading || isError;
   return (
@@ -23,11 +22,15 @@ const AboutProfile = () => {
       <div className="w-[90%] max-w-[1440px] mx-auto mt-4">
         <div>
           <div>
-            <img
-              className="rounded-lg "
-              src="https://i0.wp.com/linkedinheaders.com/wp-content/uploads/2018/02/mountain-lake-header.jpg?fit=1584%2C396&ssl=1"
-              alt=""
-            />
+            {isLoading || isError ? (
+              <Skeleton.Image active className="!w-full mb-2 !h-[320px]" />
+            ) : (
+              <img
+                className="rounded-lg "
+                src="https://i0.wp.com/linkedinheaders.com/wp-content/uploads/2018/02/mountain-lake-header.jpg?fit=1584%2C396&ssl=1"
+                alt=""
+              />
+            )}
           </div>
           <div className="w-[98%] mx-auto flex justify-between items-center ">
             <div className="flex items-end gap-5">
@@ -75,19 +78,29 @@ const AboutProfile = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="mt-5">
           <div className=" flex gap-5 border-b **:duration-300  border-[#e1dfdf] ">
-            <Link to={`/blogs/profile/${datas?._id}`}>
+            <Link to={`.`}>
               <p
                 className={` ${
                   pathname == `/blogs/profile/${datas?._id}` &&
                   "!text-[#46a358] !border-b-[#46a359] "
                 } border-b-2  text-[#727272] border-b-transparent `}
               >
+                About
+              </p>
+            </Link>
+            <Link to={`liked`}>
+              <p
+                className={` ${
+                  pathname == `/blogs/profile/${datas?._id}/liked` &&
+                  "!text-[#46a358] !border-b-[#46a359] "
+                } border-b-2  text-[#727272] border-b-transparent `}
+              >
                 Liked
               </p>
             </Link>
-            <Link to={`/blogs/profile/${datas?._id}/followers`}>
+            <Link to={`followers`}>
               <p
                 className={` ${
                   pathname == `/blogs/profile/${datas?._id}/followers` &&
@@ -97,7 +110,7 @@ const AboutProfile = () => {
                 Followers
               </p>
             </Link>
-            <Link to={`/blogs/profile/${datas?._id}/posts`}>
+            <Link to={`posts`}>
               <p
                 className={` ${
                   pathname == `/blogs/profile/${datas?._id}/posts` &&
@@ -107,19 +120,9 @@ const AboutProfile = () => {
                 Posts
               </p>
             </Link>
-            <Link to={`/blogs/profile/${datas?._id}/products`}>
-              <p
-                className={` ${
-                  pathname == `/blogs/profile/${datas?._id}/products` &&
-                  "!text-[#46a358] !border-b-[#46a359] "
-                } border-b-2  text-[#727272] border-b-transparent `}
-              >
-                Products
-              </p>
-            </Link>
-          </div>
+           </div>
           <div>
-            <Outlet {...data} />
+            <Outlet />
           </div>
         </div>
       </div>
@@ -127,18 +130,4 @@ const AboutProfile = () => {
     </>
   );
 };
-[
-  {
-    path: "/blogs/profile/:user",
-  },
-  {
-    path: "/blogs/profile/:user/followers",
-  },
-  {
-    path: "/blogs/profile/:user/posts",
-  },
-  {
-    path: "/blogs/profile/:user/products",
-  },
-];
 export default AboutProfile;

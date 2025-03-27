@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 export interface componentType {
   children: React.ReactNode;
@@ -80,4 +80,9 @@ export interface UserInfoType {
   wishlist?: object[];
   __v?: number;
   _id?: string;
+}
+export interface ProfleTabType {
+  key: string ;
+  label: string;
+  Children: React.FC
 }

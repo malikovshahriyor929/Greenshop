@@ -54,12 +54,18 @@ let ShopSlice = createSlice({
       );
       localStorage.setItem("product", JSON.stringify(state.product));
     },
-    Coupon: (state, { payload }) => {
+    Coupon: (state, { payload }: { payload: string | number }) => {
       state.coupon = +payload;
     },
   },
 });
 
-export const { addToCart, increment, decrement, deleteCart, removeToCart,Coupon } =
-  ShopSlice.actions;
+export const {
+  addToCart,
+  increment,
+  decrement,
+  deleteCart,
+  removeToCart,
+  Coupon,
+} = ShopSlice.actions;
 export default ShopSlice.reducer;

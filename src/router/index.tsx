@@ -6,19 +6,24 @@ import CardView from "../pages/cardView";
 import Shop from "../pages/shop";
 import Proccess from "../pages/proccess";
 import AboutPost from "../components/blog/posts/aboutPosts";
-import AboutProfile from "../components/blog/posts/aboutPosts/user/AboutProfile";
 import Profile from "../pages/profile";
 import MyDeaitls from "../components/profile/myDetails";
 import MyProduct from "../components/profile/myProduct";
 import Address from "../components/profile/address";
 import Wishlist from "../components/profile/wishList";
 import Tracking from "../components/profile/tracking";
+// import Liked from "../components/blog/posts/aboutPosts/user/AboutProfile/aboutPages/like";
+// import Follow from "../components/blog/posts/aboutPosts/user/AboutProfile/aboutPages/followers";
+// import PostsForAbout from "../components/blog/posts/aboutPosts/user/AboutProfile/aboutPages/posts";
+// import ProductForAbout from "../components/blog/posts/aboutPosts/user/AboutProfile/aboutPages/product";
+import CookiesInfo from "../shared/generics/cookie";
+import AboutProfile from "../components/blog/posts/aboutPosts/user/AboutProfile";
+import ProductForAbout from "../components/blog/posts/aboutPosts/user/AboutProfile/aboutPages/product";
 import Liked from "../components/blog/posts/aboutPosts/user/AboutProfile/aboutPages/like";
 import Follow from "../components/blog/posts/aboutPosts/user/AboutProfile/aboutPages/followers";
 import PostsForAbout from "../components/blog/posts/aboutPosts/user/AboutProfile/aboutPages/posts";
-import ProductForAbout from "../components/blog/posts/aboutPosts/user/AboutProfile/aboutPages/product";
-import CookiesInfo from "../shared/generics/cookie";
-const {isAuthorization} = CookiesInfo()
+import AboutForUser from "../components/blog/posts/aboutPosts/user/AboutProfile/aboutPages/about";
+const { isAuthorization } = CookiesInfo();
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -53,26 +58,30 @@ export const router = createBrowserRouter([
         element: <AboutProfile />,
         children: [
           {
-            path: "/blogs/profile/:user",
+            path: "", // ✅ Default child (renders AboutForUser when at /blogs/profile/:user)
+            element: <AboutForUser />,
+          },
+          {
+            path: "liked", // ✅ Relative path
             element: <Liked />,
           },
           {
-            path: "/blogs/profile/:user/followers",
+            path: "followers", // ✅ Relative path
             element: <Follow />,
           },
           {
-            path: "/blogs/profile/:user/posts",
+            path: "posts", // ✅ Relative path
             element: <PostsForAbout />,
           },
           {
-            path: "/blogs/profile/:user/products",
+            path: "about", // ✅ Relative path
             element: <ProductForAbout />,
           },
         ],
       },
       {
         path: "/profile",
-        element: isAuthorization?<Profile />:<Navigate to={"/"} replace />,
+        element: isAuthorization ? <Profile /> : <Navigate to={"/"} replace />,
         children: [
           {
             path: "/profile",
@@ -100,3 +109,21 @@ export const router = createBrowserRouter([
   },
 ]);
 // https://roadmap.sh/frontend
+// children: [
+//   {
+//     path: "/blogs/profile/:user",
+//     element: <ProductForAbout />,
+//   },
+//   {
+//     path: "/blogs/profile/:user/liked",
+//     element: <Liked />,
+//   },
+//   {
+//     path: "/blogs/profile/:user/followers",
+//     element: <Follow />,
+//   },
+//   {
+//     path: "/blogs/profile/:user/posts",
+//     element: <PostsForAbout />,
+//   },
+// ],

@@ -4,11 +4,11 @@ import { BlogPosts } from "../../../../@types";
 import Footer from "../../../footer";
 import { EyeOutlined } from "@ant-design/icons";
 import Profile from "./user";
-
+import { Skeleton } from "antd";
 
 const AboutPost = () => {
   let { id } = useParams();
-  let { data } = useQueryHandler({
+  let { data, isLoading, isError } = useQueryHandler({
     pathname: "created_by",
     url: `user/blog/created-by/${id}`,
   });
@@ -16,19 +16,30 @@ const AboutPost = () => {
   return (
     <>
       <div className="w-[90%] mx-auto max-w-[1440px] mb-10">
-        {data?.map((value: BlogPosts) => (
-          <div key={value?._id}>
-            <Profile props={value?.created_by} />
-            <h2 className="text-3xl font-bold my-3 ">{value?.title}</h2>
-            <p dangerouslySetInnerHTML={{ __html: value?.content }} />
-            <div className=" mt-5 flex items-center gap-3 ">
-              <EyeOutlined />
-              <p >
-                {value.views+1}
-              </p>
+        {isLoading || isError ? (
+          <div className="flex flex-col gap-4  my-3  ">
+            <div className="flex items-center gap-5   ">
+              <Skeleton.Avatar active size={60} />
+              <Skeleton.Input active />
             </div>
+            <Skeleton active />
+            <Skeleton active />
+            <Skeleton active />
+            <Skeleton active />
           </div>
-        ))}
+        ) : (
+          data?.map((value: BlogPosts) => (
+            <div key={value?._id}>
+              <Profile props={value?.created_by} />
+              <h2 className="text-3xl font-bold my-3 ">{value?.title}</h2>
+              <p dangerouslySetInnerHTML={{ __html: value?.content }} />
+              <div className=" mt-5 flex items-center gap-3 ">
+                <EyeOutlined />
+                <p>{value.views + 1}</p>
+              </div>
+            </div>
+          ))
+        )}
       </div>
       <Footer />
     </>
