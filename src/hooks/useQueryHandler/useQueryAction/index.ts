@@ -19,7 +19,6 @@ export let useLoginMutation = () => {
     mutationFn: (data: object) =>
       axios({ url: "user/sign-in", body: data, method: "POST" }),
     onSuccess: (data) => {
-      console.log(data);
       dispatch(setModalVisibilty());
       notify("login");
       localStorage.setItem("token", data.data.token);
@@ -161,8 +160,8 @@ export const DeleteOrderMutaion = () => {
         method: "POST",
         body: data,
       }),
-    onSuccess: (data) => {
-      console.log(data);
+    onSuccess: () => {
+      // console.log(data);
     },
   });
 };

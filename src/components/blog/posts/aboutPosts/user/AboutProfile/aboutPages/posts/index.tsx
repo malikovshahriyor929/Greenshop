@@ -1,7 +1,7 @@
 import { Empty } from "antd";
 
-const PostsForAbout = (props:any) => {
-    console.log(props);
+const PostsForAbout = () => {
+    // console.log(props);
   return (
     <div>
            <Empty className="mx-auto my-10" />

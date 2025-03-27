@@ -10,7 +10,7 @@ import { CardType } from "../../../../@types";
 const Card  = (props:CardType)=> {
   // let dispatch = useReduxDispatch();
   // let navigate = useNavigate();
-console.log(props);
+// console.log(props);
 
   return (
     <div className=" flex flex-col gap-3">

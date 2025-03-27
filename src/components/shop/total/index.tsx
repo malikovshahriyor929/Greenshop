@@ -27,7 +27,6 @@ const Total = ({ params }: { params: CardType[] }) => {
     });
   };
   let coupon: any = cupon;
-  console.log(+discount);
 
   return (
     <div className="w-full">
