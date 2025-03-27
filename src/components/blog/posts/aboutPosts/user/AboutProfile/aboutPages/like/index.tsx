@@ -1,7 +1,3 @@
-import { useParams } from "react-router-dom";
-import { UserInfoType } from "../../../../../../../../@types";
-import useQueryHandler from "../../../../../../../../hooks/useQueryHandler";
-import Card from "./card";
 import { Empty } from "antd";
 
 const Liked = () => {
