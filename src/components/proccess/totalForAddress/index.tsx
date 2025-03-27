@@ -14,14 +14,18 @@ const TotalForAddress = ({
   setSelectedPayment: any;
   setTotalPrice: any;
 }) => {
-  let { product } = useReduxSelector((state) => state.ShopSlice);
+  let { product, coupon } = useReduxSelector((state) => state.ShopSlice);
   let total = product?.reduce(
     (acc, value) => acc + value.price! * value.count!,
     0
   );
 
   const handlePaymentChange = (e: any) => {
-    setTotalPrice(total);
+    if (coupon !== 0) {
+      setTotalPrice(coupon);
+    } else {
+      setTotalPrice(total);
+    }
     setSelectedPayment(e.target.value);
   };
   return (
@@ -55,9 +59,15 @@ const TotalForAddress = ({
           </div>
           <div className="flex items-center text-[#3d3d3d] mt-  justify-between">
             <p className="">Total</p>
-            <p className="font-bold text-[#46a358] text-[18px] ">
-              $ {total.toFixed(2)}
-            </p>
+            {coupon !== 0 ? (
+              <p className="font-bold text-[#46a358] text-[18px] ">
+                $ {coupon}
+              </p>
+            ) : (
+              <p className="font-bold text-[#46a358] text-[18px] ">
+                $ {total.toFixed(2)}
+              </p>
+            )}
           </div>
         </div>
         <div className="flex flex-col gap-3 max-[800px]:w-full   ">

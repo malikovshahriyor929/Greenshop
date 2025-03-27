@@ -17,7 +17,7 @@ const ProccessComponents = () => {
   const [form] = Form.useForm();
   const [selectedPayment, setSelectedPayment] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0) || 0;
-  let { product } = useReduxSelector((state) => state.ShopSlice);
+  let { product, coupon } = useReduxSelector((state) => state.ShopSlice);
   let { mutate, isPending } = orderDataMutation();
   let dispatch = useReduxDispatch();
 
@@ -31,22 +31,29 @@ const ProccessComponents = () => {
       message.error("Please select a payment method!");
       return;
     }
-    mutate({
-      shop_list: product,
-      billing_address: { name: values.name, surname: values.surname },
-      extra_shop_info: {
-        total: totalPrice,
-        method: selectedPayment,
-      },
-    });
-    setDetails({
-      shop_list: product,
-      billing_address: { name: values.name, surname: values.surname },
-      extra_shop_info: {
-        total: totalPrice,
-        method: selectedPayment,
-      },
-    });
+    if (coupon !== 0) {
+      let data = {
+        shop_list: product,
+        billing_address: { name: values.name, surname: values.surname },
+        extra_shop_info: {
+          total: coupon,
+          method: selectedPayment,
+        },
+      };
+      mutate(data);
+      setDetails(data);
+    } else {
+      let data = {
+        shop_list: product,
+        billing_address: { name: values.name, surname: values.surname },
+        extra_shop_info: {
+          total: totalPrice,
+          method: selectedPayment,
+        },
+      };
+      mutate(data);
+      setDetails(data);
+    }
     dispatch(removeToCart());
   };
   let { ModalVisibiltyForOrder } = useReduxSelector(

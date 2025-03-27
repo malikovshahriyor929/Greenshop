@@ -132,9 +132,9 @@ export const AccountDetails = () => {
         body: data,
         url: "user/account-details",
       }),
-      onSuccess(data) {
-        message.success(data.message)
-      },
+    onSuccess(data) {
+      message.success(data.message);
+    },
   });
 };
 export const AddressMutation = () => {
@@ -176,8 +176,24 @@ export const Create_Wishlist = () => {
         body: data,
         url: "user/create-wishlist",
       }),
+    onSuccess(data) {
+      message.success(data?.message);
+    },
+  });
+};
+
+export const Join_NewsMutation = () => {
+  let axios = useAxios();
+  return useMutation({
+    mutationFn: (data: object) =>
+      axios({
+        url: "features/email-subscribe",
+        method: "POST",
+        body: data,
+      }),
       onSuccess(data) {
-        message.success(data?.message);
+        message.success(data.message)
       },
   });
 };
+

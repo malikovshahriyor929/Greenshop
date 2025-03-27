@@ -7,7 +7,7 @@ import { useState } from "react";
 const MyDeaitls = () => {
   let { getCookie, setCookie } = CookiesInfo();
   let id = getCookie("user")?._id;
-  let { mutate, isError } = AccountDetails();
+  let { mutate } = AccountDetails();
   const [_, setImageUrl] = useState(
     "https://alqadir.edu.pk/wp-content/uploads/2022/09/BS-Islamic-Studies-2022.jpg"
   );
@@ -29,10 +29,8 @@ const MyDeaitls = () => {
       _id: id,
       profile_photo: formValue.profile_photo[0].thumbUrl,
     });
-    if (!isError) {
       let datas = { ...getCookie("user"), ...formValue };
       setCookie("user", datas);
-    }
   };
   const uploadProps: UploadProps = {
     beforeUpload: () => false,

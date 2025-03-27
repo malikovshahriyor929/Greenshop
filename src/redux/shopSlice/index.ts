@@ -3,10 +3,12 @@ import type { CardType } from "../../@types";
 
 interface InitialStateType {
   product: CardType[];
+  coupon: number;
 }
 
 let initialState: InitialStateType = {
   product: JSON.parse(localStorage.getItem("product") as string) || [],
+  coupon: JSON.parse(localStorage.getItem("coupon") as string) || 0,
 };
 
 let ShopSlice = createSlice({
@@ -52,9 +54,12 @@ let ShopSlice = createSlice({
       );
       localStorage.setItem("product", JSON.stringify(state.product));
     },
+    Coupon: (state, { payload }) => {
+      state.coupon = +payload;
+    },
   },
 });
 
-export const { addToCart, increment, decrement, deleteCart,removeToCart } =
+export const { addToCart, increment, decrement, deleteCart, removeToCart,Coupon } =
   ShopSlice.actions;
 export default ShopSlice.reducer;

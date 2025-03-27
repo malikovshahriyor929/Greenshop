@@ -87,7 +87,10 @@ const OrderDetails = ({ props }: { props: any }) => {
             items.
           </p>
           <button
-            onClick={() => navigate("/profile/tracking")}
+            onClick={() => {
+              navigate("/profile/tracking"), localStorage.removeItem("product");
+              localStorage.removeItem("coupon");
+            }}
             className="flex items-center flex-col w-full"
           >
             <Button x={20} y={10}>

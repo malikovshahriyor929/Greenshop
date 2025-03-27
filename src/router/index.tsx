@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import Home from "../pages/home";
 import Blogs from "../pages/blog";
 import MainLayout from "../shared/layout";
@@ -17,7 +17,8 @@ import Liked from "../components/blog/posts/aboutPosts/user/AboutProfile/aboutPa
 import Follow from "../components/blog/posts/aboutPosts/user/AboutProfile/aboutPages/followers";
 import PostsForAbout from "../components/blog/posts/aboutPosts/user/AboutProfile/aboutPages/posts";
 import ProductForAbout from "../components/blog/posts/aboutPosts/user/AboutProfile/aboutPages/product";
-
+import CookiesInfo from "../shared/generics/cookie";
+const {isAuthorization} = CookiesInfo()
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -71,7 +72,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <Profile />,
+        element: isAuthorization?<Profile />:<Navigate to={"/"} replace />,
         children: [
           {
             path: "/profile",

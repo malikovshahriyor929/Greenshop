@@ -1,4 +1,6 @@
 import Button from "../../shared/generics/btn";
+import { Form, Input } from "antd";
+import { Join_NewsMutation } from "../../hooks/useQueryHandler/useQueryAction";
 
 import logo from "../../shared/assets/svg/Logo (2).svg";
 import flower1 from "../../shared/assets/svg/flower1.svg";
@@ -17,6 +19,10 @@ import {
 } from "react-icons/fa";
 
 const Footer = () => {
+  let { mutate } = Join_NewsMutation();
+  let join = (formValue: object) => {
+    mutate(formValue);
+  };
   return (
     <div className="w-[90%] mx-auto max-w-[1440px] max-[600px]:mb-20 ">
       <div className="grid grid-cols-[1fr_1fr_1fr_1.5fr] max-[940px]:grid-cols-[1fr_1.2fr] max-[450px]:grid-cols-1 gap-5 p-5 bg-[#fbfbfb] ">
@@ -52,20 +58,25 @@ const Footer = () => {
           <p className="text-[#3d3d3d] text-[17px] font-bold rounded-l-none ">
             Would you like to join newsletters?
           </p>
-          <div className="flex items-center bg-white rounded-lg shadow-[0_0_20px_0_rgba(0,0,0,0.06)] ">
-            <input
-              type="text"
-              className="w-full bg-white outline-none  p-2 rounded-l-lg"
-              placeholder="enter your email address..."
-            />
-            <Button
-              x={20}
-              y={8}
-              styles="!rounded-r-lg rounded-l-none cursor-pointer  max-[530px]:!p-[8px_10px]  "
-            >
-              Join
-            </Button>
-          </div>
+          <Form onFinish={join}>
+            <div className="flex items-center bg-white rounded-lg shadow-[0_0_20px_0_rgba(0,0,0,0.06)] ">
+              <Form.Item className="w-full" name="email">
+                <Input
+                  className="!w-full !bg-white !outline-none  !p-2 !border-none !rounded-l-lg"
+                  placeholder="enter your email address..."
+                />
+              </Form.Item>
+              <button type="submit">
+                <Button
+                  x={20}
+                  y={8}
+                  styles="!rounded-r-lg rounded-l-none cursor-pointer  max-[530px]:!p-[8px_10px]  "
+                >
+                  Join
+                </Button>
+              </button>
+            </div>
+          </Form>
           <p className="text-[13px] text-[#727272]">
             We usually post offers and challenges in newsletter. We’re your
             online houseplant destination. We offer a wide range of houseplants
