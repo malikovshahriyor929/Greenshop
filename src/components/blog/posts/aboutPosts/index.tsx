@@ -7,8 +7,8 @@ import Profile from "./user";
 import { Skeleton } from "antd";
 
 const AboutPost = () => {
-  let { id } = useParams();
-  let { data, isLoading, isError } = useQueryHandler({
+  const { id } = useParams();
+  const { data, isLoading, isError } = useQueryHandler({
     pathname: "created_by",
     url: `user/blog/created-by/${id}`,
   });

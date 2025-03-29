@@ -8,14 +8,14 @@ import { UserInfoType } from "../../../../../@types";
 import { FollowMutation } from "../../../../../hooks/useQueryHandler/useQueryAction";
 
 const Profile = ({ props }: { props: string }) => {
-  let [followCheck, setFollowCheck] = useState(false);
-  let { getCookie, setCookie } = CookiesInfo();
-  let { data }: { data: UserInfoType[] | any } = useQueryHandler({
+  const [followCheck, setFollowCheck] = useState(false);
+  const { getCookie, setCookie } = CookiesInfo();
+  const { data }: { data: UserInfoType[] | any } = useQueryHandler({
     pathname: `user-${props}`,
     url: `user/by_id/${props}`,
   });
-  let { mutate } = FollowMutation();
-  let followFinder: UserInfoType = getCookie("user")?.followers?.find(
+  const { mutate } = FollowMutation();
+  const followFinder: UserInfoType = getCookie("user")?.followers?.find(
     async (value: any) => value !== data?._id
   );
 
@@ -26,15 +26,15 @@ const Profile = ({ props }: { props: string }) => {
     });
   }
   console.log(data);
-// let isFollow = 
-  let Follow = () => {
+// const isFollow = 
+  const Follow = () => {
     setFollowCheck(true);
     setCookie("user", { ...getCookie("user"), follow: [data?._id] });
     //   console.log(getCookie("user"));
     mutate({ _id: data?._id });
   };
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <div className="flex items-center justify-between pt-5">
       <div

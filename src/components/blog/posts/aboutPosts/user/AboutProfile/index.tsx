@@ -9,14 +9,14 @@ import { LuSend } from "react-icons/lu";
 import { PlusCircleOutlined } from "@ant-design/icons";
 
 const AboutProfile = () => {
-  let { pathname } = useLocation();
-  let { user } = useParams();
-  let { data, isLoading, isError } = useQueryHandler({
+  const { pathname } = useLocation();
+  const { user } = useParams();
+  const { data, isLoading, isError } = useQueryHandler({
     pathname: "userhg",
     url: `user/by_id/${user}`,
   });
-  let datas: UserInfoType = data;
-  let load = isLoading || isError;
+  const datas: UserInfoType = data;
+  const load = isLoading || isError;
   return (
     <>
       <div className="w-[90%] max-w-[1440px] mx-auto mt-4">
