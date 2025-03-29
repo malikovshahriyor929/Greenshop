@@ -196,3 +196,19 @@ export const Join_NewsMutation = () => {
   });
 };
 
+
+export const FollowMutation = () => {
+  let axios = useAxios();
+  return useMutation({
+    mutationFn: (data: object) =>
+      axios({
+        url: "user/follow",
+        method: "POST",
+        body: data,
+      }),
+    onSuccess: (data) => {
+      console.log(data);
+      message.success(data?.message)
+    },
+  });
+};

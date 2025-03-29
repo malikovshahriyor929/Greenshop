@@ -6,12 +6,13 @@ let CookiesInfo = () => {
   };
 
   const setCookie = (key: string, data: string) => {
-    return Cookies.set(key, JSON.stringify(data), { expires: 12 / 24 });
+    return Cookies.set(key, JSON.stringify(data), { expires: 24 / 24 });
   };
 
   const isAuthorization = getCookie("user") ? true : false;
+  const isFollow = getCookie("follow") ? true : false;
 
-  return { getCookie, setCookie, isAuthorization };
+  return { getCookie, setCookie, isAuthorization, isFollow };
 };
 
 export default CookiesInfo;

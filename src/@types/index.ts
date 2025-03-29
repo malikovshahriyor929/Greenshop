@@ -1,5 +1,3 @@
-import React, { ReactNode } from "react";
-
 export interface componentType {
   children: React.ReactNode;
 }

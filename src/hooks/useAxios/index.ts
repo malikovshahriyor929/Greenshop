@@ -26,10 +26,12 @@ export let useAxios = () => {
         ...headers,
       },
       params: {
-        access_token: "64bebc1e2c6d3f056a8c85b7",
+        // access_token: "64bebc1e2c6d3f056a8c85b7",
+        access_token: "64eecf3b54abde61153d1fd3",
         ...params,
       },
     }).then((data) => data.data);
   };
   return request
 };
+//  64eecf3b54abde61153d1fd3
