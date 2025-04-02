@@ -176,11 +176,25 @@ export const Create_Wishlist = () => {
         url: "user/create-wishlist",
       }),
     onSuccess(data) {
-      message.success(data?.message);
+      message.success(`${data?.message} added`);
     },
   });
 };
 
+export const Delete_Wishlist_Mutation = () => {
+  let axios = useAxios();
+  return useMutation({
+    mutationFn: (data: object) =>
+      axios({
+        method: "DELETE",
+        body: data,
+        url: "user/delete-wishlist",
+      }),
+    onSuccess(data) {
+      message.success(`${data?.message} deleted`);
+    },
+  });
+};
 export const Join_NewsMutation = () => {
   let axios = useAxios();
   return useMutation({

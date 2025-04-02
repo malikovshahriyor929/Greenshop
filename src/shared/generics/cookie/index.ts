@@ -5,7 +5,7 @@ let CookiesInfo = () => {
     return Cookies.get(key) ? JSON.parse(Cookies.get(key) as string) : null;
   };
 
-  const setCookie = (key: string, data: string) => {
+  const setCookie = (key: string, data: object) => {
     return Cookies.set(key, JSON.stringify(data), { expires: 24 / 24 });
   };
 

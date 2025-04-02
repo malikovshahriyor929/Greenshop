@@ -80,7 +80,12 @@ export interface UserInfoType {
   _id?: string;
 }
 export interface ProfleTabType {
-  key: string ;
+  key: string;
   label: string;
-  Children: React.FC
+  Children: React.FC;
+}
+
+export interface wishlistType {
+  route_path?: string;
+  flower_id?: string;
 }
