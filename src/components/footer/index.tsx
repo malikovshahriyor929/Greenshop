@@ -63,7 +63,7 @@ const Footer = () => {
               <Form.Item className="w-full" name="email">
                 <Input
                   className="!w-full !bg-red-500 !outline-none !
-                  my-auto !p-2 !border-none !rounded-l-lg"
+                  my-auto  !border-none !rounded-l-lg"
                   placeholder="enter your email address..."
                 />
               </Form.Item>
