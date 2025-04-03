@@ -67,7 +67,7 @@ const Footer = () => {
                   placeholder="enter your email address..."
                 />
               </Form.Item>
-              <button type="submit" className="bg-[#46a358] !rounded-r-lg rounded-l-none cursor-pointer  max-[530px]:!p-[8px_10px] ">
+              <button type="submit" className="bg-[#46a358] !rounded-r-lg rounded-l-none cursor-pointer   ">
                 <Button
                   x={20}
                   // y={8}
