@@ -71,7 +71,7 @@ const Footer = () => {
                 <Button
                   x={20}
                   // y={8}
-                  styles="!rounded-r-lg rounded-l-none !py-2 cursor-pointer  max-[530px]:!p-[8px_10px]  "
+                  styles="!rounded-r-lg rounded-l-none !py-2 cursor-pointer    "
                 >
                   Join
                 </Button>
