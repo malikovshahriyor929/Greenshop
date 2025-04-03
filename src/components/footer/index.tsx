@@ -62,14 +62,15 @@ const Footer = () => {
             <div className="!flex  w-full bg-white rounded-lg shadow-[0_0_20px_0_rgba(0,0,0,0.06)] ">
               <Form.Item className="w-full" name="email">
                 <Input
-                  className="!w-full !bg-red-500 !outline-none  !p-2 !border-none !rounded-l-lg"
+                  className="!w-full !bg-red-500 !outline-none !
+                  my-auto !p-2 !border-none !rounded-l-lg"
                   placeholder="enter your email address..."
                 />
               </Form.Item>
               <button type="submit" className="bg-[#46a358] !rounded-r-lg rounded-l-none cursor-pointer  max-[530px]:!p-[8px_10px] ">
                 <Button
                   x={20}
-                  y={8}
+                  // y={8}
                   styles="!rounded-r-lg rounded-l-none cursor-pointer  max-[530px]:!p-[8px_10px]  "
                 >
                   Join
