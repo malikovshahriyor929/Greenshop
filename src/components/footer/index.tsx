@@ -59,7 +59,7 @@ const Footer = () => {
             Would you like to join newsletters?
           </p>
           <Form onFinish={join} >
-            <div className="flex self-center  w-full bg-white rounded-lg shadow-[0_0_20px_0_rgba(0,0,0,0.06)] ">
+            <div className="flex self-center h-9 w-full bg-white rounded-lg shadow-[0_0_20px_0_rgba(0,0,0,0.06)] ">
               <Form.Item className="w-full" name="email">
                 <Input
                   className="  !py-2 !outline-none !
