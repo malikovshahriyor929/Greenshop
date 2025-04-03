@@ -58,15 +58,15 @@ const Footer = () => {
           <p className="text-[#3d3d3d] text-[17px] font-bold rounded-l-none ">
             Would you like to join newsletters?
           </p>
-          <Form onFinish={join}>
-            <div className="!flex !items-center bg-white rounded-lg shadow-[0_0_20px_0_rgba(0,0,0,0.06)] ">
+          <Form onFinish={join} className="flex *:!w-full   ">
+            <div className="!flex !items-center w-full bg-white rounded-lg shadow-[0_0_20px_0_rgba(0,0,0,0.06)] ">
               <Form.Item className="w-full" name="email">
                 <Input
                   className="!w-full !bg-white !outline-none  !p-2 !border-none !rounded-l-lg"
                   placeholder="enter your email address..."
                 />
               </Form.Item>
-              <button type="submit">
+              <button type="submit" className="bg-[#46a358] !rounded-r-lg rounded-l-none cursor-pointer  max-[530px]:!p-[8px_10px] ">
                 <Button
                   x={20}
                   y={8}
