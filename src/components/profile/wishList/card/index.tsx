@@ -1,7 +1,4 @@
-import { useState } from "react";
-import {
-  Delete_Wishlist_Mutation,
-} from "../../../../hooks/useQueryHandler/useQueryAction";
+import { Delete_Wishlist_Mutation } from "../../../../hooks/useQueryHandler/useQueryAction";
 import { useNavigate } from "react-router-dom";
 import { useReduxDispatch } from "../../../../hooks/useRedux";
 import CookiesInfo from "../../../../shared/generics/cookie";
@@ -15,24 +12,9 @@ import { HeartFilled } from "@ant-design/icons";
 const Card = (props: CardType) => {
   let dispatch = useReduxDispatch();
   let navigate = useNavigate();
-  // let { mutate } = Create_Wishlist();
   let { mutate: DeleteWish } = Delete_Wishlist_Mutation();
   let { getCookie, setCookie } = CookiesInfo();
   let user: UserInfoType = getCookie("user") as any;
-  let [wishlist, setWishlist] = useState<wishlistType[]>(user?.wishlist || []);
-  let isLiked = wishlist.some((value) => value?.flower_id == props?._id);
-  // let liked = (flower_value: CardType) => {
-  //   user = {
-  //     ...user,
-  //     wishlist: [
-  //       ...(user.wishlist as wishlistType[]),
-  //       { route_path: flower_value.category, flower_id: flower_value._id },
-  //     ],
-  //   };
-  //   setWishlist(user.wishlist!);
-  //   mutate({ route_path: flower_value.category, flower_id: flower_value._id });
-  //   setCookie("user", user);
-  // };
   let disLiked = (flower_value: CardType) => {
     user = {
       ...user,
@@ -43,7 +25,6 @@ const Card = (props: CardType) => {
       ],
     };
     DeleteWish({ _id: flower_value._id });
-    setWishlist(user.wishlist!);
     setCookie("user", user);
   };
 
@@ -69,7 +50,7 @@ const Card = (props: CardType) => {
               disLiked(props);
             }}
             className={`${
-              isLiked && "!text-[red]"
+              "!text-[red]"
             } text-2xl bg-white p-1 rounded-lg`}
           >
             <HeartFilled />

@@ -10,6 +10,9 @@ const Wishlist = () => {
     url: "user/wishlist",
   });
 
+  console.log(data, 'datas');
+  
+
 
   for (let i = 0; i < data?.length; i++) {
     if (data[i] !== null) {

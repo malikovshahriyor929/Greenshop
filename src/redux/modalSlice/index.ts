@@ -7,7 +7,6 @@ interface InitialStateType {
 let initialState: InitialStateType = {
   ModalVisibilty: false,
   ModalVisibiltyForOrder: false,
-
 };
 
 const modalSlice = createSlice({

@@ -31,7 +31,7 @@ const Card = (props: CardType) => {
       ],
     };
     setWishlist(user.wishlist!);
-    mutate({ route_path: flower_value.category, flower_id: flower_value._id });
+    mutate({ route_path: flower_value.category, flower_id: flower_value?._id });
     setCookie("user", user);
   };
   let disLiked = (flower_value: CardType) => {
