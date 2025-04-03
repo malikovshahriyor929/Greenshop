@@ -58,7 +58,7 @@ const Footer = () => {
           <p className="text-[#3d3d3d] text-[17px] font-bold rounded-l-none ">
             Would you like to join newsletters?
           </p>
-          <Form onFinish={join} className="flex   ">
+          <Form onFinish={join} >
             <div className="!flex items-center   w-full bg-white rounded-lg shadow-[0_0_20px_0_rgba(0,0,0,0.06)] ">
               <Form.Item className="w-full" name="email">
                 <Input
