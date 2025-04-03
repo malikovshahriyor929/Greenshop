@@ -41,7 +41,7 @@ const Posts = () => {
       {posts.map((value) => (
         <div key={value.id} className="flex  flex-col hover:scale-105 hover:shadow-lg duration-300 rounded-lg ">
           <img src={value.img} className="rounded-t-lg" alt="" />
-          <div className="flex flex-col justify-between h-full gap-1 p-3 bg-[#fbfbfb]  ">
+          <div className="flex flex-col justify-between h-full gap-1 p-3 bg-[#fbfbfb] rounded-b-lg  ">
             <p className="text-[14px] max-[1165px]:text-[12px] text-[#46a358] font-medium ">
               {value.text_small}
             </p>
