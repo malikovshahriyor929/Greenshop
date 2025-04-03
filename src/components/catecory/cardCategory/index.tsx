@@ -78,7 +78,12 @@ const CardCategory = () => {
             ))
           : data?.map((value: CardType) => (
               <div key={value._id}>
-                <Card {...value} category={category as string} />
+                <div className="max-">
+                  <Card {...value} category={category as string} />
+                </div>
+                <div className="hidden"> 
+                  <Card {...value} category={category as string} />
+                </div>
               </div>
             ))}
       </div>

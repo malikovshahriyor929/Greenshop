@@ -2,7 +2,7 @@ import type { CardType } from "../../../@types";
 
 const Descr = ({ data }: { data: CardType }) => {
   return (
-    <div className="w-[90%] mx-auto max-w-[1440px]">
+    <div className="w-[90%] mx-auto max-w-[1440px] mt-10 z-50 sticky">
       <h2 className="text-[#46a358] text-[17px] font-bold border-b-2 border-[#46a358]">
         Product Description
       </h2>

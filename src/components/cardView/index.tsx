@@ -15,31 +15,75 @@ import { FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import { LuMail } from "react-icons/lu";
 import Footer from "../footer";
 import Descr from "./derc";
+import { addToCart, decrement } from "../../redux/shopSlice";
+import { useReduxDispatch, useReduxSelector } from "../../hooks/useRedux";
+import { useEffect, useState } from "react";
+import {
+  Create_Wishlist,
+  Delete_Wishlist_Mutation,
+} from "../../hooks/useQueryHandler/useQueryAction";
+import CookiesInfo from "../../shared/generics/cookie";
+import { CardType, UserInfoType, wishlistType } from "../../@types";
 
 const CardViewComponents = () => {
+  let { mutate } = Create_Wishlist();
+  let { mutate: DeleteWish } = Delete_Wishlist_Mutation();
   let { id } = useParams();
   let [params, _] = useSearchParams({ category: "accessories" });
+  let { getCookie, setCookie } = CookiesInfo();
   let navagate = useNavigate();
+  let dispatch = useReduxDispatch();
+  let [counter, setCounter] = useState(1);
   const category = params.get("category") || "accessories";
-
+  let user: UserInfoType = getCookie("user") as any;
+  let [wishlist, setWishlist] = useState<wishlistType[]>(user?.wishlist || []);
   let { data } = useQueryHandler({
     pathname: `cardView-${category}`,
     url: `flower/category/${category}/${id}`,
   });
+  let isLiked = wishlist.some((value) => value?.flower_id == data?._id);
+  let { product } = useReduxSelector((state) => state.ShopSlice);
+  useEffect(() => {
+    const foundProduct = product.find((value) => value._id === data?._id);
+    if (foundProduct) setCounter(foundProduct.count!);
+  }, [product, data]);
 
-  console.log(Boolean(data));
   if (data == null) {
     return (
       <div className="top-0 left-0 h-full w-full absolute flex-col  gap-5  flex items-center justify-center">
         <Empty />
-       <button className=" cursor-pointer   " onClick={()=>navagate("/")}>
-       <Button>
-          Go to shop
-        </Button>
-       </button>
+        <button className=" cursor-pointer   " onClick={() => navagate("/")}>
+          <Button>Go to shop</Button>
+        </button>
       </div>
     );
   }
+
+  let liked = (flower_value: CardType) => {
+    user = {
+      ...user,
+      wishlist: [
+        ...(user.wishlist as wishlistType[]),
+        { route_path: flower_value.category, flower_id: flower_value?._id },
+      ],
+    };
+    setWishlist(user.wishlist!);
+    mutate({ route_path: flower_value.category, flower_id: flower_value?._id });
+    setCookie("user", user);
+  };
+  let disLiked = (flower_value: CardType) => {
+    user = {
+      ...user,
+      wishlist: [
+        ...user.wishlist!?.filter(
+          (value: wishlistType) => value.flower_id !== data._id
+        ),
+      ],
+    };
+    DeleteWish({ _id: flower_value._id });
+    setWishlist(user.wishlist!);
+    setCookie("user", user);
+  };
 
   return (
     <>
@@ -59,7 +103,7 @@ const CardViewComponents = () => {
             >
               {data?.detailed_images.map((value: string, idx: number) => (
                 <Image
-                  className="!w-[100px] !h-[100px] max-[475px]:mx-auto max-[475px]:!h-[70px] max-[475px]:!w-[70px] max-[370px]:!h-[60px] max-[370px]:!w-[60px]  !object-cover bg-[#fbfbfb] rounded-lg "
+                  className="!w-[100px]  !h-[100px] max-[475px]:mx-auto max-[475px]:!h-[70px] max-[475px]:!w-[70px] max-[370px]:!h-[60px] max-[370px]:!w-[60px]  !object-cover bg-[#fbfbfb] rounded-lg "
                   key={idx}
                   src={value}
                   alt=""
@@ -68,7 +112,7 @@ const CardViewComponents = () => {
             </div>
             <div className=" **:!rounded-lg mx-auto   max-[9]: p-2 *:!rounded-lg !max-w-[400px] object-contain  !max-h-[400px]">
               <Image
-                className="!w-full !h-full bg-[#fbfbfb] ax-[910px]:!max-w-[400px] max-[910px]:!max-h-[400px]  !p-2  !rounded-lg !object-cover "
+                className="!w-full !h-full bg-[#fbfbfb] ax-w-[400px] max-[910px]:!max-h-[400px]  !p-2  !rounded-lg !object-cover "
                 src={data?.main_image}
               />
             </div>
@@ -116,28 +160,66 @@ const CardViewComponents = () => {
             </div>
             <div className="my-5 flex items-center max-[1020px]:items-start max-[1020px]:flex-col gap-5 max-[1059px]:gap-3 ">
               <div className="flex items-center gap-3">
-                <div className="bg-[#46a358] cursor-pointer h-8 w-8 active:scale-95 duration-100 flex items-center justify-center  text-white rounded-full">
+                <div
+                  onClick={() => {
+                    dispatch(addToCart(data));
+                  }}
+                  className="!bg-[#46a358] cursor-pointer h-8 w-8 active:scale-95 duration-100 flex items-center justify-center  text-white rounded-full"
+                >
                   <PlusOutlined />
                 </div>
-                <div>1</div>
-                <div className="bg-[#46a358] cursor-pointer h-8 w-8 active:scale-95 duration-100 flex items-center justify-center  text-white rounded-full">
+                <div>{counter}</div>
+                <div
+                  onClick={() => {
+                    dispatch(decrement({ id: data?._id }));
+                  }}
+                  className="!bg-[#46a358] cursor-pointer h-8 w-8 active:scale-95 duration-100 flex items-center justify-center  text-white rounded-full"
+                >
                   <MinusOutlined />
                 </div>
               </div>
               <div className="w-fit flex   items-center gap-5 max-[1059px]:gap-3 max-[305px]:gap-1 grid-cols-2">
-                <Button
-                  x={15}
-                  y={10}
-                  styles={"text-nowrap max-[1059px]:!p-[5px_10px]  "}
+                <div
+                  className="cursor-pointer "
+                  onClick={() => {
+                    navagate("/shopping_cart"), dispatch(addToCart(data));
+                  }}
                 >
-                  Buy NOW
-                </Button>
-                <button className="border-[#46a358] border text-nowrap   max-[1059px]:!p-[5px_10px] rounded-lg px-5 py-2.5 flex  gap-1 text-[#46a358] ">
+                  <Button
+                    x={15}
+                    y={10}
+                    styles={"text-nowrap max-[1059px]:!p-[5px_10px]  "}
+                  >
+                    Buy NOW
+                  </Button>
+                </div>
+                <button
+                  onClick={() => dispatch(addToCart(data))}
+                  className="border-[#46a358] border text-nowrap cursor-pointer   max-[1059px]:!p-[5px_10px] rounded-lg px-5 py-2.5 flex  gap-1 text-[#46a358] "
+                >
                   Add to cart
                 </button>
-                <button className="border-[#46a358] w-fit border  max-[1059px]:!p-[5px_10px] rounded-lg p-2 flex  gap-1 text-[#46a358] ">
-                  <BiHeart size={25} />
-                </button>
+                {isLiked ? (
+                  <button
+                    onClick={() => {
+                      disLiked(data);
+                    }}
+                    className={`${
+                      isLiked && "!text-[red]"
+                    } bg-white border-[#46a358] w-fit border  max-[1059px]:!p-[5px_10px] rounded-lg p-2 flex  gap-1 text-[#46a358]`}
+                  >
+                    <BiHeart size={25} />
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      liked(data);
+                    }}
+                    className={` bg-white border-[#46a358] w-fit border  max-[1059px]:!p-[5px_10px] rounded-lg p-2 flex  gap-1 text-[#46a358]`}
+                  >
+                    <BiHeart size={25} />
+                  </button>
+                )}
               </div>
             </div>
             <div>

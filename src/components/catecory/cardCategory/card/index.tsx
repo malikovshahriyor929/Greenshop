@@ -50,7 +50,7 @@ const Card = (props: CardType) => {
 
   return (
     <div className=" flex flex-col gap-3">
-      <div className="cartHover overflow-hidden relative">
+      <div  className="cartHover overflow-hidden relative">
         <div className="flex items-center flex-col bg-[#fbfbfb] max-[472px]:bg-[linear-gradient(135deg,#f4f4f4_0%,#fafafa_100%)] max-[472px]:rounded-2xl p-5">
           <img
             className="max-w-[250px] max-[420px]:p-5 max-[420px]:object-contain max-[460px]:max-h-[200px]  max-h-[250px]"
