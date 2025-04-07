@@ -9,8 +9,12 @@ import { notificationApi } from "../../../shared/generics/notification";
 import { signWithGoogle } from "../../../configs";
 import { message, notification } from "antd";
 import CookiesInfo from "../../../shared/generics/cookie";
-
-export let useLoginMutation = () => {
+import Cookies from "js-cookie";
+let logOut = () => {
+  localStorage.removeItem("token");
+  Cookies.remove("user");
+};
+export const useLoginMutation = () => {
   let axios = useAxios();
   let dispatch = useReduxDispatch();
   let notify = notificationApi();
@@ -23,6 +27,7 @@ export let useLoginMutation = () => {
       notify("login");
       localStorage.setItem("token", data.data.token);
       setCookie("user", data.data.user);
+      window.location.reload();
     },
   });
 };
@@ -39,6 +44,7 @@ export const useRegiterMutation = () => {
       notify("register");
       localStorage.setItem("token", data.data.token);
       setCookie("user", data.data.user);
+      window.location.reload();
     },
   });
 };
@@ -46,8 +52,8 @@ export const useRegiterMutation = () => {
 export const LoginWithGoogle = () => {
   let axios = useAxios();
   let dispatch = useReduxDispatch();
-  let notify = notificationApi();
-  let { setCookie } = CookiesInfo();
+  // let notify = notificationApi();
+  // let { setCookie } = CookiesInfo();
   return useMutation({
     mutationFn: async () => {
       let response = await signWithGoogle();
@@ -57,11 +63,25 @@ export const LoginWithGoogle = () => {
         body: { email: response?.user?.email },
       });
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       dispatch(setModalVisibilty());
-      notify("login_with_google");
-      localStorage.setItem("token", data.data.token);
-      setCookie("user", data.data.user);
+      // notify("login_with_google");
+      // localStorage.setItem("token", data.data.token);
+      // setCookie("user", data.data.user);
+      notification.warning({
+        message: "Warning",
+        description: "Google is not working ",
+      });
+      window.location.reload();
+    },
+    onError: () => {
+      notification.warning({
+        message: "Warning",
+        description: "Please enter your email",
+      });
+      logOut()
+      window.location.reload()
+
     },
   });
 };
@@ -69,7 +89,7 @@ export const RegisterWithGoogle = () => {
   let axios = useAxios();
   let dispatch = useReduxDispatch();
   let notify = notificationApi();
-  let { setCookie } = CookiesInfo();
+  // let { setCookie } = CookiesInfo();
   return useMutation({
     mutationFn: async () => {
       let response = await signWithGoogle();
@@ -79,13 +99,21 @@ export const RegisterWithGoogle = () => {
         body: { email: response?.user?.email },
       });
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       dispatch(setModalVisibilty());
       notify("register_with_google");
-      localStorage.setItem("token", data.data.token);
-      setCookie("user", data.data.user);
+      // localStorage.setItem("token", data.data.token);
+      // setCookie("user", data.data.user);
+      window.location.reload();
     },
     onError: (error: { status: number }) => {
+      notification.warning({
+        message: "Warning",
+        description: "Please enter your email",
+      });
+      logOut()
+      window.location.reload()
+
       if (error?.status == 406) {
         notification.error({ message: "you already registered" });
       }
@@ -204,12 +232,11 @@ export const Join_NewsMutation = () => {
         method: "POST",
         body: data,
       }),
-      onSuccess(data) {
-        message.success(data.message)
-      },
+    onSuccess(data) {
+      message.success(data.message);
+    },
   });
 };
-
 
 export const FollowMutation = () => {
   let axios = useAxios();
@@ -222,7 +249,7 @@ export const FollowMutation = () => {
       }),
     onSuccess: (data) => {
       console.log(data);
-      message.success(data?.message)
+      message.success(data?.message);
     },
   });
 };
